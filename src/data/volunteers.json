@@ -6,7 +6,7 @@
         "rating": 4,
         "location": "O'Fallon, IL",
         "languages": [ "English", "French" ],
-        "knowledge": [ "Visa Process", "Immigration Law" ]
+        "knowledge": [ "Visa Process", "Immigration Law", "Translations", "Community" ]
     },
     {
         "volunteer_id": 2,
@@ -15,7 +15,7 @@
         "rating": 1,
         "location": "St. Louis, MO",
         "languages": [ "English" ],
-        "knowledge": [ "Community", "Immigration Law", "Visa Process" ]
+        "knowledge": [ "Community", "Immigration Law", "Visa Process", "Translations" ]
     },
     {
         "volunteer_id": 3,
@@ -23,8 +23,8 @@
         "profile_picture": "/img/brandon.jpg",
         "rating": 4,
         "location": "O'Fallon, IL",
-        "languages": [ "English", "Spanish" ],
-        "knowledge": [ "Visa Process", "Medical Services" ]
+        "languages": [ "English", "Español" ],
+        "knowledge": [ "Visa Process", "Medical Services", "Translations" ]
     },
     {
         "volunteer_id": 4,
@@ -32,8 +32,8 @@
         "profile_picture": "/img/john.jpg",
         "rating": 4,
         "location": "St. Louis, MO",
-        "languages": [ "English", "Spanish" ],
-        "knowledge": [ "Community", "Traslations" ]
+        "languages": [ "English", "Español" ],
+        "knowledge": [ "Community", "Translations" ]
     },
     {
         "volunteer_id": 5,
@@ -41,8 +41,8 @@
         "profile_picture": "/img/sean.jpg",
         "rating": 5,
         "location": "St. Louis, MO",
-        "languages": [ "English", "Spanish", "French" ],
-        "knowledge": [ "Medical Services", "Immigration Law" ]
+        "languages": [ "English", "Español", "French" ],
+        "knowledge": [ "Medical Services", "Immigration Law", "Translations" ]
     },
     {
         "volunteer_id": 6,
@@ -50,7 +50,7 @@
         "profile_picture": "/img/aram.jpg",
         "rating": 5,
         "location": "St. Louis, MO",
-        "languages": [ "English", "Spanish" ],
+        "languages": [ "English", "Español" ],
         "knowledge": [ "Immigration Law", "Visa Process", "Translations" ]
     }
 ]

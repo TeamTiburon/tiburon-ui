@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,7 +11,8 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import Language from '@material-ui/icons/Language';
 import Videocam from '@material-ui/icons/Videocam';
 import Chat from '@material-ui/icons/Chat';
-import StarRate from '@material-ui/icons/StarRate';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -76,6 +78,7 @@ class Profile extends Component {
         this.volunteer = volunteers.find(volunteer => {
             return this.volunteerId == volunteer.volunteer_id;
         });
+        this.goBack = this.goBack.bind(this);
     }
 
     onComponentDidMount() {
@@ -86,13 +89,28 @@ class Profile extends Component {
         console.log(event);
     }
 
+    goBack() {
+        this.props.history.push('/results');
+    }
+
     render() {
         const { classes } = this.props;
+
+        var stars = [];
+        var emptyStars = [];
+
+        for(var i = 0; i < this.volunteer.rating; i++) {
+            stars.push(<StarIcon key={i} className={classes.rating}/>);
+        }
+
+        for(var i = 0; i < 5 - this.volunteer.rating; i++) {
+            emptyStars.push(<StarBorderIcon key={i} className={classes.rating}/>);
+        }
 
         return (
             <div>
                 <div className={classes.header}>
-                    <IconButton onClick={this.submit}>
+                    <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
                     <h1 className={classes.volunteerName}>{this.volunteer.name}</h1>
@@ -105,11 +123,8 @@ class Profile extends Component {
                             className={classes.bigAvatar}
                             />
                         <div className={classes.volunteerBasic}>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
+                            {stars}
+                            {emptyStars}
                             <div className={classes.flex}>
                                 <LocationOn className={classes.icon}/>
                                 <span>St. Louis, MO</span>
@@ -145,4 +160,4 @@ class Profile extends Component {
     }
 }
 
-export default withStyles(styles)(Profile);
+export default withStyles(styles)(withRouter(Profile));
