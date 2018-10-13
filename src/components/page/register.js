@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
@@ -15,7 +14,7 @@ const styles = theme => ({
         textAlign: 'center',
         fontSize: 48,
         fontWeight: 400,
-        marginBottom: 0
+        marginBottom: -16
     },
     gridy: {
         display: 'flex',
@@ -23,6 +22,10 @@ const styles = theme => ({
     },
     flexy: {
         flexGrow: 1
+    },
+    button: {
+        flexGrow: 1,
+        marginTop: 28
     }
 });
 
@@ -50,9 +53,8 @@ class Register extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-
     submit(event) {
-        console.log('state is: ', this.state)
+        localStorage.setItem('user', JSON.stringify(this.state));
     }
 
     render() {
@@ -76,7 +78,7 @@ class Register extends Component {
                 <form noValidate autoComplete="off">
 
                     <div className={classes.root}>
-                        <Grid container spacing={8}>
+                        <Grid container spacing={4}>
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="email"
@@ -135,7 +137,7 @@ class Register extends Component {
                                 </TextField>
                             </Grid>
                             <Grid item xs={12} className={classes.gridy}>
-                                <Button variant="contained" color="primary" onClick={this.submit}>
+                                <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
                                     Submit
                                 </Button>
                             </Grid>
