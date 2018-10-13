@@ -76,7 +76,21 @@ class Profile extends Component {
         this.volunteer = volunteers.find(volunteer => {
             return this.volunteerId == volunteer.volunteer_id;
         });
+
+           this.initiateLiveVideoChat = this.initiateLiveVideoChat.bind(this);
+                this.intiateLiveTextChat = this.intiateLiveTextChat.bind(this);
+
+            }
+
+            initiateLiveVideoChat(event) {
+                console.log("video chat")
+            }
+
+            intiateLiveTextChat(event) {
+                console.log("text chat")
+            }
     }
+
 
     onComponentDidMount() {
 
@@ -136,8 +150,8 @@ class Profile extends Component {
                     </div>
 
                     <BottomNavigation onChange={this.handleNavigation} className={classes.actions}>
-                        <BottomNavigationAction label="Video Call" value="video-call" icon={<Videocam />} />
-                        <BottomNavigationAction label="Live Chat" value="live-chat" icon={<Chat />} />
+                        <BottomNavigationAction  onClick={this.initiateLiveVideoChat} label="Video Call" value="video-call" icon={<Videocam />} />
+                        <BottomNavigationAction onClick={this.intiateLiveTextChat} label="Live Chat" value="live-chat" icon={<Chat />} />
                   </BottomNavigation>
                 </div>
             </div>
