@@ -18,24 +18,22 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Navbar/>
-      <BrowserRouter>
-        <div>
 
+      <BrowserRouter>
+
+        <div>
+           <Navbar/>
             <Switch>
-              <Route exact path='/' render={(props) => <Splash {...props} />}/>              
+              <Route exact path='/' render={(props) => <Splash {...props} />}/>
               <Route path='/register' render={(props) => <Register {...props} />}/>
               <Route path='/dashboard' render={(props) => <Dashboard {...props} />}/>
-              { <Route path='/search' render={(props) => <Search/>}/> }
-              { <Route path='/results' render={(props) => <Results/>}/> }
-              { <Route path='/sendMessage' render={(props) => <SendMessage/>}/> }
-              {/* <Route path='/profile/:id' render={(props) => <Profile/>}/> */}
-              { <Route path='/incomingCall' render={(props) => <IncomingCall/>}/> }
-              { <Route path='/outgoingCall' render={(props) => <OutgoingCall/>}/> }
-                <Route path='/profile/:id' component={ Profile }/>
-                  <Route path='/volunteerDashboard' component={ VolunteerDashboard }/>
-              {/* <Route path='/'
-                render={(props) => <Dashboard active={true} />} /> */}
+              <Route path='/search' render={(props) => <Search {...props} />}/>
+              <Route path='/results' render={(props) => <Results {...props} />}/>
+              <Route path='/sendMessage' render={(props) => <SendMessage {...props} />}/>
+              <Route path='/incomingCall' render={(props) => <IncomingCall {...props} />}/>
+              <Route path='/outgoingCall' render={(props) => <OutgoingCall {...props} />}/>
+              <Route path='/profile/:id' render={(props) => <Profile {...props} />}/>
+              <Route path='/volunteerDashboard' component={ VolunteerDashboard }/>
             </Switch>
         </div>
       </BrowserRouter>

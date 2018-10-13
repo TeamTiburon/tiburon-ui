@@ -74,11 +74,68 @@ class Profile extends Component {
 
     constructor(props) {
         super(props);
-        this.volunteerId = this.props.match.params.id;
-        this.volunteer = volunteers.find(volunteer => {
-            return this.volunteerId == volunteer.volunteer_id;
-        });
+
+        const volunteerId = this.props.match.params.id;
+        const volunteer = volunteers.find(volunteer => volunteerId == volunteer.volunteer_id);
+
+        this.state = {
+            calling: false,
+            volunteerId,
+            volunteer
+        };
         this.goBack = this.goBack.bind(this);
+
+        this.initiateLiveVideoChat = this.initiateLiveVideoChat.bind(this);
+        this.intiateLiveTextChat = this.intiateLiveTextChat.bind(this);
+    }
+
+
+    initiateLiveVideoChat() {
+        const {
+            volunteerId,
+            volunteer
+        } = this.state;
+
+        this.setState({ calling: true });
+        fetch(`http://35.184.88.156:8080/token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: 'iamuser'
+            })
+        })
+        .then((response) => response.json())
+        .then(({ identity, token }) => {
+            return fetch(`http://35.184.88.156:8080/call/${ volunteerId }`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userName: 'I am who I am'
+                })
+            })
+            .then((response) => response.json())
+            .then(({ roomName }) => {
+                this.props.history.push({
+                    pathname: '/outgoingCall',
+                    roomName,
+                    volunteer: volunteer,
+                    volunteerId: volunteerId,
+                    token,
+                    identity
+                });
+            });
+        }).catch((e) => {
+            this.setState({ calling: false, error: e });
+        });
+    }
+
+    intiateLiveTextChat(event) {
+        this.props.history.push({pathname: '/sendMessage', state: { profile: this.state.volunteer }})
+
     }
 
     onComponentDidMount() {
@@ -94,39 +151,43 @@ class Profile extends Component {
     }
 
     render() {
+        const { volunteer } = this.state;
         const { classes } = this.props;
 
         var stars = [];
         var emptyStars = [];
 
-        for(var i = 0; i < this.volunteer.rating; i++) {
+        for(var i = 0; i < volunteer.rating; i++) {
             stars.push(<StarIcon key={i} className={classes.rating}/>);
         }
 
-        for(var i = 0; i < 5 - this.volunteer.rating; i++) {
+        for(var i = 0; i < 5 - volunteer.rating; i++) {
             emptyStars.push(<StarBorderIcon key={i} className={classes.rating}/>);
         }
 
         return (
             <div>
                 <div className={classes.header}>
+                    <IconButton onClick={this.submit}>
+                        <ArrowBack className={classes.icon} />
+                    </IconButton>
                     <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
-                    <h1 className={classes.volunteerName}>{this.volunteer.name}</h1>
+                    <h1 className={classes.volunteerName}>{volunteer.name}</h1>
                 </div>
                 <div className={classes.root}>
                     <div className={classes.volunteerProfile}>
                         <Avatar
-                            alt={this.volunteer.name}
-                            src={this.volunteer.profile_picture}
+                            alt={volunteer.name}
+                            src={volunteer.profile_picture}
                             className={classes.bigAvatar}
-                            />
+                        />
                         <div className={classes.volunteerBasic}>
                             {stars}
                             {emptyStars}
                             <div className={classes.flex}>
-                                <LocationOn className={classes.icon}/>
+                                <LocationOn className={classes.icon} />
                                 <span>St. Louis, MO</span>
                             </div>
                         </div>
@@ -136,13 +197,13 @@ class Profile extends Component {
                         <h3>Languages</h3>
 
                         <ul>
-                            {this.volunteer.languages.map((language, i) => <li key={i}>{language}</li>)}
+                            {volunteer.languages.map((language, i) => <li key={i}>{language}</li>)}
                         </ul>
 
                         <h3>Knowledge Areas</h3>
 
                         <ul>
-                            {this.volunteer.knowledge.map((knowledge, i) => <li key={i}>{knowledge}</li>)}
+                            {volunteer.knowledge.map((knowledge, i) => <li key={i}>{knowledge}</li>)}
                         </ul>
 
                         <h3>Bio</h3>
@@ -151,9 +212,9 @@ class Profile extends Component {
                     </div>
 
                     <BottomNavigation onChange={this.handleNavigation} className={classes.actions}>
-                        <BottomNavigationAction label="Video Call" value="video-call" icon={<Videocam />} />
-                        <BottomNavigationAction label="Live Chat" value="live-chat" icon={<Chat />} />
-                  </BottomNavigation>
+                        <BottomNavigationAction onClick={this.initiateLiveVideoChat} label="Video Call" value="video-call" icon={<Videocam />} />
+                        <BottomNavigationAction onClick={this.intiateLiveTextChat} label="Live Chat" value="live-chat" icon={<Chat />} />
+                    </BottomNavigation>
                 </div>
             </div>
         );
