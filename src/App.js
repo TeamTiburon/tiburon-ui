@@ -6,8 +6,10 @@ import Dashboard from './components/page/dashboard';
 import Search from './components/page/search';
 import Results from './components/page/results';
 // import Profile from './components/page/profile';
+import IncomingCall from './components/page/incoming-call'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/navbar'
+import SendMessage from './components/page/send-message';
 
 class App extends Component {
   render() {
@@ -23,8 +25,9 @@ class App extends Component {
               <Route path='/dashboard' render={(props) => <Dashboard {...props} />}/>
               { <Route path='/search' render={(props) => <Search/>}/> }
               { <Route path='/results' render={(props) => <Results/>}/> }
+              { <Route path='/sendMessage' render={(props) => <SendMessage/>}/> }
               {/* <Route path='/profile/:id' render={(props) => <Profile/>}/> */}
-           
+              { <Route path='/calling' render={(props) => <IncomingCall/>}/> }
               {/* <Route path='/'
                 render={(props) => <Dashboard active={true} />} /> */}
             </Switch>
