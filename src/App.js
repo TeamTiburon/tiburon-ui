@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/navbar'
 import SendMessage from './components/page/send-message';
 import OutgoingCall from './components/page/outgoing-call';
+import VolunteerDashboard from './components/page/volunteer-dashboard';
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
               { <Route path='/incomingCall' render={(props) => <IncomingCall/>}/> }
               { <Route path='/outgoingCall' render={(props) => <OutgoingCall/>}/> }
                 <Route path='/profile/:id' component={ Profile }/>
+                  <Route path='/volunteerDashboard' component={ VolunteerDashboard }/>
               {/* <Route path='/'
                 render={(props) => <Dashboard active={true} />} /> */}
             </Switch>
