@@ -55,6 +55,7 @@ class Register extends Component {
 
     submit(event) {
         localStorage.setItem('user', JSON.stringify(this.state));
+        this.props.history.push('/dashboard')
     }
 
     render() {
