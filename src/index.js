@@ -5,27 +5,40 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Nes from 'nes/client';
 
-// FIXME: WEBSOCKET
-// Need the appropriate path and port
-const client = new Nes.Client('ws://localhost:8080');
+export const client = new Nes.Client('ws://35.184.88.156:8080');
 
-// async function connect() {
-//   await client.connect();
+client.connect().then(() => {
+    ReactDOM.render(<App />, document.getElementById('root'));
+    serviceWorker.unregister();
+});
 
-//   // Handler will receive messages from the server, need to hook into app state to initiate call flow, etc
-//   const handler = (update, flags) => {
-//     console.log({update, flags});
-//   };
+export const connection = (function() {
+    let subscription;
+    let history;
 
-  // the user ID here should be the same one submitted to /token
-  //client.subscribe('/volunteer/alex', handler);
-//}
-// connect();
-// FIXME: END WEBSOCKET
+    const handler = (update, flags) => {
+        console.log({update, flags});
 
-ReactDOM.render(<App />, document.getElementById('root'));
+        if(update.type === 'call_incoming') {
+            history.push({
+                pathname: '/incomingCall',
+                search: '?roomName=' + update.roomName + '&userName=' + update.userName
+            });
+        }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+        // Example of changing route with singleton
+        // if(history) {
+        //    history.push('/register');
+        // }
+    };
+
+    // Subscribe and ingest React's router history so we can force view changes
+    function subscribe(routerHistory) {
+        history = routerHistory;
+        subscription = client.subscribe('/volunteer/6', handler);
+    }
+
+    return {
+        subscribe
+    };
+})();

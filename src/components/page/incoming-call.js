@@ -4,6 +4,7 @@ import Phone from '@material-ui/icons/Phone';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import queryString from 'query-string';
 
 const styles = theme => ({
     root: {
@@ -66,7 +67,12 @@ class IncomingCall extends Component {
         this.sendMessageToUser = this.sendMessageToUser.bind(this);
         this.answer = this.answer.bind(this);
 
+        this.parseQuery(queryString.parse(this.props.location.search));
+    }
 
+    parseQuery(values) {
+        this.roomName = values.roomName;
+        this.userName = values.userName;
     }
 
     componentDidMount() {
@@ -101,7 +107,7 @@ class IncomingCall extends Component {
             <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
 
             <h4 style={{ color: "#fff" }}>
-                Someone is calling
+                {this.userName} is calling
                 </h4>
             <div>
                     <Button
