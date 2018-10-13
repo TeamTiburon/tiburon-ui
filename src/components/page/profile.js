@@ -16,6 +16,8 @@ import IconButton from '@material-ui/core/IconButton';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
+const volunteers = require('../../data/volunteers.json');
+
 const styles = theme => ({
     header: {
         display: 'flex',
@@ -34,6 +36,9 @@ const styles = theme => ({
         margin: 10,
         width: 100,
         height: 100,
+    },
+    volunteerBasic: {
+        marginTop: 16
     },
     gridy: {
         display: 'flex',
@@ -65,16 +70,13 @@ const styles = theme => ({
 
 class Profile extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         rating: '',
-    //         displayName: '',
-    //         languages: [],
-    //         skills: [],
-    //         bio: ''
-    //     }
-    // }
+    constructor(props) {
+        super(props);
+        this.volunteerId = this.props.match.params.id;
+        this.volunteer = volunteers.find(volunteer => {
+            return this.volunteerId == volunteer.volunteer_id;
+        });
+    }
 
     onComponentDidMount() {
 
@@ -85,9 +87,7 @@ class Profile extends Component {
     }
 
     render() {
-
         const { classes } = this.props;
-        // const { id: voluteerId } = this.props.match.params;
 
         return (
             <div>
@@ -95,16 +95,16 @@ class Profile extends Component {
                     <IconButton onClick={this.submit}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
-                    <h1 className={classes.volunteerName}>Alejandro R.</h1>
+                    <h1 className={classes.volunteerName}>{this.volunteer.name}</h1>
                 </div>
                 <div className={classes.root}>
                     <div className={classes.volunteerProfile}>
                         <Avatar
-                            alt="Alejandro R."
-                            src={`${process.env.PUBLIC_URL}/img/aram.jpg`}
+                            alt={this.volunteer.name}
+                            src={this.volunteer.profile_picture}
                             className={classes.bigAvatar}
                             />
-                        <div>
+                        <div className={classes.volunteerBasic}>
                             <StarRate className={classes.rating}/>
                             <StarRate className={classes.rating}/>
                             <StarRate className={classes.rating}/>
@@ -121,16 +121,13 @@ class Profile extends Component {
                         <h3>Languages</h3>
 
                         <ul>
-                            <li>English</li>
-                            <li>Spanish</li>
+                            {this.volunteer.languages.map((language, i) => <li key={i}>{language}</li>)}
                         </ul>
 
                         <h3>Knowledge Areas</h3>
 
                         <ul>
-                            <li>Immigration Law</li>
-                            <li>Visa Process</li>
-                            <li>Medical Services</li>
+                            {this.volunteer.knowledge.map((knowledge, i) => <li key={i}>{knowledge}</li>)}
                         </ul>
 
                         <h3>Bio</h3>

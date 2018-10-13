@@ -17,9 +17,9 @@ const client = new Nes.Client('ws://localhost:8080');
 //     console.log({update, flags});
 //   };
 
-//   // the user ID here should be the same one submitted to /token
-//   client.subscribe('/volunteer/alex', handler);
-// }
+  // the user ID here should be the same one submitted to /token
+  //client.subscribe('/volunteer/alex', handler);
+//}
 // connect();
 // FIXME: END WEBSOCKET
 

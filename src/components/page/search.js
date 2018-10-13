@@ -36,7 +36,9 @@ const styles = theme => ({
 const topics = [
     'Immigration Law',
     'Community',
-    'Translations'
+    'Translations',
+    'Medical Services',
+    'Visa Process'
 ];
 
 const languages = [
