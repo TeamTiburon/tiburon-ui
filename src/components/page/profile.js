@@ -11,6 +11,7 @@ import Language from '@material-ui/icons/Language';
 import Videocam from '@material-ui/icons/Videocam';
 import Chat from '@material-ui/icons/Chat';
 import StarRate from '@material-ui/icons/StarRate';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 import yellow from '@material-ui/core/colors/yellow';
 
 const styles = theme => ({
@@ -78,7 +79,7 @@ class Profile extends Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                Back
+                <ArrowBack className={classes.icon}/>
                 </Button>
                 <h1 className={classes.header}>Alejandro R.</h1>
                 <div className={classes.root}>
