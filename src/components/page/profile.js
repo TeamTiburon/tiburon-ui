@@ -12,45 +12,54 @@ import Videocam from '@material-ui/icons/Videocam';
 import Chat from '@material-ui/icons/Chat';
 import StarRate from '@material-ui/icons/StarRate';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import yellow from '@material-ui/core/colors/yellow';
+import IconButton from '@material-ui/core/IconButton';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 const styles = theme => ({
-    root: {
-        padding: 24
-    },
     header: {
-        textAlign: 'center',
-        fontSize: 48,
+        display: 'flex',
+        alignItems: 'center'
+    },
+    volunteerName: {
+        fontSize: 32,
         fontWeight: 400,
-        marginBottom: -16
+        marginLeft: 8
+    },
+    volunteerProfile: {
+        display: 'flex',
+        padding: '0 16px'
+    },
+    bigAvatar: {
+        margin: 10,
+        width: 100,
+        height: 100,
     },
     gridy: {
         display: 'flex',
         flexGrow: 1,
     },
-    flexy: {
-        flexGrow: 1
+    flex: {
+        display: 'flex',
+        alignItems: 'center'
     },
-    button: {
-        flexGrow: 1,
-        marginTop: 28
-    },
-    avatar: {
-        margin: 10,
-      },
-    bigAvatar: {
-        margin: 10,
-        width: 60,
-        height: 60,
-      },
-    icon: {
-        margin: theme.spacing.unit,
-        fontSize: 32,
-      },
     rating: {
         margin: 0,
-        fontSize: 30,
-        color: yellow[400]
+        fontSize: 30
+    },
+    volunteerDetails: {
+        padding: '16px 16px calc(56px + 16px)',
+    },
+    actions: {
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)'
+    },
+    actionIcon: {
+        width: 48,
+        height: 48
     }
 });
 
@@ -71,6 +80,10 @@ class Profile extends Component {
 
     }
 
+    handleNavigation(event) {
+        console.log(event);
+    }
+
     render() {
 
         const { classes } = this.props;
@@ -78,55 +91,58 @@ class Profile extends Component {
 
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                <ArrowBack className={classes.icon}/>
-                </Button>
-                <h1 className={classes.header}>Alejandro R.</h1>
+                <div className={classes.header}>
+                    <IconButton onClick={this.submit}>
+                        <ArrowBack className={classes.icon}/>
+                    </IconButton>
+                    <h1 className={classes.volunteerName}>Alejandro R.</h1>
+                </div>
                 <div className={classes.root}>
-                    <Grid container spacing={0}>
+                    <div className={classes.volunteerProfile}>
                         <Avatar
-                        alt="Alejandro R."
-                        src={`${process.env.PUBLIC_URL}/img/aram.jpg`}
-                        className={classes.bigAvatar}
-                        />
-                        <StarRate className={classes.rating}/>
-                        <StarRate className={classes.rating}/>
-                        <StarRate className={classes.rating}/>
-                        <StarRate className={classes.rating}/>
-                        <StarRate className={classes.rating}/>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <LocationOn className={classes.icon}/>
-                            <p><em>St. Louis, MO</em></p>
-                        </Grid>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <h3>Languages</h3>
-                        </Grid>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <ul>
-                                <li>English</li>
-                                <li>Spanish</li>
-                            </ul>
-                        </Grid>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <h3>Knowledge Areas</h3>
-                        </Grid>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <ul>
-                                <li>Immigration Law</li>
-                                <li>Visa Process</li>
-                                <li>Medical Services</li>
-                            </ul>
-                        </Grid>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <h3>Bio</h3>
-                        </Grid>
-                        <Grid item xs={12} className={classes.gridy}>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </Grid>
-                        <Videocam className={classes.icon}/>
-                        <Chat className={classes.icon}/>    
-                    </Grid>  
-                </div>          
+                            alt="Alejandro R."
+                            src={`${process.env.PUBLIC_URL}/img/aram.jpg`}
+                            className={classes.bigAvatar}
+                            />
+                        <div>
+                            <StarRate className={classes.rating}/>
+                            <StarRate className={classes.rating}/>
+                            <StarRate className={classes.rating}/>
+                            <StarRate className={classes.rating}/>
+                            <StarRate className={classes.rating}/>
+                            <div className={classes.flex}>
+                                <LocationOn className={classes.icon}/>
+                                <span>St. Louis, MO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={classes.volunteerDetails}>
+                        <h3>Languages</h3>
+
+                        <ul>
+                            <li>English</li>
+                            <li>Spanish</li>
+                        </ul>
+
+                        <h3>Knowledge Areas</h3>
+
+                        <ul>
+                            <li>Immigration Law</li>
+                            <li>Visa Process</li>
+                            <li>Medical Services</li>
+                        </ul>
+
+                        <h3>Bio</h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+
+                    <BottomNavigation onChange={this.handleNavigation} className={classes.actions}>
+                        <BottomNavigationAction label="Video Call" value="video-call" icon={<Videocam />} />
+                        <BottomNavigationAction label="Live Chat" value="live-chat" icon={<Chat />} />
+                  </BottomNavigation>
+                </div>
             </div>
         );
     }
