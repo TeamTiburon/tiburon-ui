@@ -85,7 +85,7 @@ class IncomingCall extends Component {
         }).then((response) => response.json())
         .then((data) => {
             this.token = data.token;
-            this.id = data.id;
+            this.identity = data.identity;
         });
     }
 
