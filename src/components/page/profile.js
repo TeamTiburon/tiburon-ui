@@ -74,27 +74,49 @@ class Profile extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            calling: false
+        };
+
         this.volunteerId = this.props.match.params.id;
         this.volunteer = volunteers.find(volunteer => {
-            return this.volunteerId == volunteer.volunteer_id;
+            return this.volunteerId === volunteer.volunteer_id;
         });
         this.goBack = this.goBack.bind(this);
 
         this.initiateLiveVideoChat = this.initiateLiveVideoChat.bind(this);
         this.intiateLiveTextChat = this.intiateLiveTextChat.bind(this);
-
     }
 
 
-    initiateLiveVideoChat(event) {
-        console.log("video chat")
+    initiateLiveVideoChat() {
+        this.setState({ calling: true });
+        fetch(`http://35.184.88.156:8080/call/${ this.volunteerId }`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userName: 'I am who I am'
+            })
+        })
+        .then(({ roomName }) => {
+            this.props.history.push({
+                pathname: '/outgoingCall',
+                roomName,
+                volunteer: this.volunteer,
+                volunteerId: this.volunteerId
+            });
+        }).catch((e) => {
+            this.setState({ calling: false, error: e });
+        });
     }
 
     intiateLiveTextChat(event) {
         this.props.history.push({pathname: '/sendMessage', state: { profile: this.volunteer }})
 
     }
-
 
     onComponentDidMount() {
 
@@ -127,6 +149,7 @@ class Profile extends Component {
                 <div className={classes.header}>
                     <IconButton onClick={this.submit}>
                         <ArrowBack className={classes.icon} />
+                    </IconButton>
                     <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
@@ -140,11 +163,6 @@ class Profile extends Component {
                             className={classes.bigAvatar}
                         />
                         <div className={classes.volunteerBasic}>
-                            <StarRate className={classes.rating} />
-                            <StarRate className={classes.rating} />
-                            <StarRate className={classes.rating} />
-                            <StarRate className={classes.rating} />
-                            <StarRate className={classes.rating} />
                             {stars}
                             {emptyStars}
                             <div className={classes.flex}>
