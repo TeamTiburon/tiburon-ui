@@ -78,7 +78,7 @@ class Register extends Component {
                 <form noValidate autoComplete="off">
 
                     <div className={classes.root}>
-                        <Grid container spacing={4}>
+                        <Grid container spacing={8}>
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="email"
