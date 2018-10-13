@@ -28,6 +28,6 @@ class App extends Component {
       </BrowserRouter>
     );
   }
-}z
+}
 
 export default App;
