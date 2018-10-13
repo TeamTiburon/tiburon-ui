@@ -92,21 +92,36 @@ class Profile extends Component {
 
     initiateLiveVideoChat() {
         this.setState({ calling: true });
-        fetch(`http://35.184.88.156:8080/call/${ this.volunteerId }`, {
+        fetch(`http://35.184.88.156:8080/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                userName: 'I am who I am'
+                user: 'iamuser'
             })
         })
-        .then(({ roomName }) => {
-            this.props.history.push({
-                pathname: '/outgoingCall',
-                roomName,
-                volunteer: this.volunteer,
-                volunteerId: this.volunteerId
+        .then((response) => response.json())
+        .then(({ identity, token }) => {
+            return fetch(`http://35.184.88.156:8080/call/${ this.volunteerId }`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userName: 'I am who I am'
+                })
+            })
+            .then((response) => response.json())
+            .then(({ roomName }) => {
+                this.props.history.push({
+                    pathname: '/outgoingCall',
+                    roomName,
+                    volunteer: this.volunteer,
+                    volunteerId: this.volunteerId,
+                    token,
+                    identity
+                });
             });
         }).catch((e) => {
             this.setState({ calling: false, error: e });
