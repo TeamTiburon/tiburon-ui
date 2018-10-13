@@ -77,18 +77,19 @@ class Profile extends Component {
             return this.volunteerId == volunteer.volunteer_id;
         });
 
-           this.initiateLiveVideoChat = this.initiateLiveVideoChat.bind(this);
-                this.intiateLiveTextChat = this.intiateLiveTextChat.bind(this);
+        this.initiateLiveVideoChat = this.initiateLiveVideoChat.bind(this);
+        this.intiateLiveTextChat = this.intiateLiveTextChat.bind(this);
 
-            }
+    }
 
-            initiateLiveVideoChat(event) {
-                console.log("video chat")
-            }
 
-            intiateLiveTextChat(event) {
-                console.log("text chat")
-            }
+    initiateLiveVideoChat(event) {
+        console.log("video chat")
+    }
+
+    intiateLiveTextChat(event) {
+        this.props.history.push({pathname: '/sendMessage', state: { profile: this.volunteer }})
+
     }
 
 
@@ -107,7 +108,7 @@ class Profile extends Component {
             <div>
                 <div className={classes.header}>
                     <IconButton onClick={this.submit}>
-                        <ArrowBack className={classes.icon}/>
+                        <ArrowBack className={classes.icon} />
                     </IconButton>
                     <h1 className={classes.volunteerName}>{this.volunteer.name}</h1>
                 </div>
@@ -117,15 +118,15 @@ class Profile extends Component {
                             alt={this.volunteer.name}
                             src={this.volunteer.profile_picture}
                             className={classes.bigAvatar}
-                            />
+                        />
                         <div className={classes.volunteerBasic}>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
-                            <StarRate className={classes.rating}/>
+                            <StarRate className={classes.rating} />
+                            <StarRate className={classes.rating} />
+                            <StarRate className={classes.rating} />
+                            <StarRate className={classes.rating} />
+                            <StarRate className={classes.rating} />
                             <div className={classes.flex}>
-                                <LocationOn className={classes.icon}/>
+                                <LocationOn className={classes.icon} />
                                 <span>St. Louis, MO</span>
                             </div>
                         </div>
@@ -150,9 +151,9 @@ class Profile extends Component {
                     </div>
 
                     <BottomNavigation onChange={this.handleNavigation} className={classes.actions}>
-                        <BottomNavigationAction  onClick={this.initiateLiveVideoChat} label="Video Call" value="video-call" icon={<Videocam />} />
+                        <BottomNavigationAction onClick={this.initiateLiveVideoChat} label="Video Call" value="video-call" icon={<Videocam />} />
                         <BottomNavigationAction onClick={this.intiateLiveTextChat} label="Live Chat" value="live-chat" icon={<Chat />} />
-                  </BottomNavigation>
+                    </BottomNavigation>
                 </div>
             </div>
         );

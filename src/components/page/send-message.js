@@ -62,7 +62,8 @@ class SendMessage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: ""
+            message: "",
+            profile: ""
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -71,7 +72,11 @@ class SendMessage extends Component {
     }
 
     componentDidMount() {
-
+        var profile = this.props.location.state.profile;
+        this.setState({
+            profile: profile
+        })
+        console.log("other thing: ", profile)
     }
 
     handleChange(event) {
@@ -99,8 +104,7 @@ class SendMessage extends Component {
 
         return (
             <div>
-
-                <h4 className={classes.subHeader}> Send a message</h4>
+                <h4 className={classes.subHeader}> Message to {this.state.profile.name}</h4>
 
                 <form className={classes.container} noValidate autoComplete="off">
 
