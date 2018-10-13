@@ -7,10 +7,13 @@ import Register from './components/page/register';
 // import Results from './components/page/results';
 // import Profile from './components/page/profile';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Navbar from './components/navbar/navbar'
 
 class App extends Component {
   render() {
     return (
+      <div>
+      <Navbar/>
       <BrowserRouter>
         <div>
 
@@ -26,6 +29,7 @@ class App extends Component {
             </Switch>
         </div>
       </BrowserRouter>
+      </div>
     );
   }
 }
