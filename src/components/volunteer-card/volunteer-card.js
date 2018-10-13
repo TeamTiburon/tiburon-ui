@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -45,10 +46,16 @@ class VolunteerCard extends Component {
     constructor(props) {
         super(props);
         this.volunteer = this.props.volunteer;
+        this.viewVolunteerDetails = this.viewVolunteerDetails.bind(this);
     }
 
     onComponentDidMount() {
     }
+
+    viewVolunteerDetails() {
+        this.props.history.push('/profile/' + this.volunteer.volunteer_id);
+    }
+
 
     render() {
         const { classes } = this.props;
@@ -57,15 +64,15 @@ class VolunteerCard extends Component {
         var emptyStars = [];
 
         for(var i = 0; i < this.volunteer.rating; i++) {
-            stars.push(<StarIcon className={classes.ratingStar}/>);
+            stars.push(<StarIcon key={i} className={classes.ratingStar}/>);
         }
 
         for(var i = 0; i < 5 - this.volunteer.rating; i++) {
-            emptyStars.push(<StarBorderIcon className={classes.ratingStar}/>);
+            emptyStars.push(<StarBorderIcon key={i} className={classes.ratingStar}/>);
         }
 
         return (
-            <Card className={classes.root}>
+            <Card className={classes.root} onClick={this.viewVolunteerDetails}>
               <CardActionArea className={classes.cardDetail}>
                 <CardMedia className={classes.media}
                   image={this.volunteer.profile_picture}
@@ -90,4 +97,4 @@ class VolunteerCard extends Component {
     }
 }
 
-export default withStyles(styles)(VolunteerCard);
+export default withStyles(styles)(withRouter(VolunteerCard));

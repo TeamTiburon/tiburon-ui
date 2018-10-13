@@ -12,7 +12,7 @@ const styles = theme => ({
         padding: 24
     },
     header: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 400,
         margin: '0 0 16px'
     },
@@ -48,16 +48,20 @@ class Results extends Component {
 
         console.log(this.helpWith, this.languages);
     }
-
     render() {
         const { classes } = this.props;
+        const vm = this;
+
+        let sortedVolunteers = volunteers.sort((a, b) => {
+            return b.rating - a.rating;
+        });
 
         return (
             <div className={classes.root}>
                 <h1 className={classes.header}>We found the following Volunteers who can help:</h1>
 
                 <div className={classes.cardContainer}>
-                    {volunteers.map((volunteer, i) => <VolunteerCard key={i} volunteer={volunteer}/>)}
+                    {sortedVolunteers.map((volunteer, i) => <VolunteerCard key={i} volunteer={volunteer}/>)}
                 </div>
             </div>
         );
