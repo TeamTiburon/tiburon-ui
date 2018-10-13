@@ -58,7 +58,7 @@ class Search extends Component {
         super(props);
         this.state = {
             helpWith: [],
-            languages: []
+            language: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
@@ -73,10 +73,9 @@ class Search extends Component {
 
     submit(event) {
         const helpWith = this.state.helpWith.join(',');
-        const languages = this.state.languages.join(',');
         this.props.history.push({
             pathname: '/results',
-            search: '?helpWith=' + helpWith + '&languages=' + languages
+            search: '?helpWith=' + helpWith + '&language=' + this.state.language
         });
     }
 
@@ -109,16 +108,15 @@ class Search extends Component {
 
                     <Grid item xs={12} className={classes.gridy}>
                         <FormControl className={classes.flexy}>
-                            <InputLabel htmlFor="languages">In the languages...</InputLabel>
+                            <InputLabel htmlFor="language">In the language...</InputLabel>
                             <Select
-                                multiple
-                                value={this.state.languages}
+                                value={this.state.language}
                                 onChange={this.handleChange}
-                                input={<Input id="languages" name="languages" />}>
+                                input={<Input id="language" name="language" />}>
                                 {languages.map(language => (
                                     <MenuItem
-                                        key={language.value}
-                                        value={language.value}>
+                                        key={language.label}
+                                        value={language.label}>
                                         {language.label}
                                     </MenuItem>
                                 ))}
