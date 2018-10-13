@@ -16,7 +16,6 @@ class App extends Component {
       <Navbar/>
       <BrowserRouter>
         <div>
-
             <Switch>
               <Route path='/register' render={(props) => <Register/>}/>
               {/* <Route path='/dashboard' render={(props) => <Dashboard/>}/> */}
