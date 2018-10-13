@@ -10,6 +10,7 @@ import IncomingCall from './components/page/incoming-call'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/navbar'
 import SendMessage from './components/page/send-message';
+import OutgoingCall from './components/page/outgoing-call';
 
 class App extends Component {
   render() {
@@ -27,7 +28,8 @@ class App extends Component {
               { <Route path='/results' render={(props) => <Results/>}/> }
               { <Route path='/sendMessage' render={(props) => <SendMessage/>}/> }
               {/* <Route path='/profile/:id' render={(props) => <Profile/>}/> */}
-              { <Route path='/calling' render={(props) => <IncomingCall/>}/> }
+              { <Route path='/incomingCall' render={(props) => <IncomingCall/>}/> }
+              { <Route path='/outgoingCall' render={(props) => <OutgoingCall/>}/> }
               {/* <Route path='/'
                 render={(props) => <Dashboard active={true} />} /> */}
             </Switch>

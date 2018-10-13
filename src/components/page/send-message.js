@@ -128,7 +128,7 @@ class SendMessage extends Component {
                                 color="primary"
                                 onClick={this.submit}
                                 className={classes.button}>
-                                Local Information
+                                Send Message
                                 </Button>
                         </Grid>
                     </div>
