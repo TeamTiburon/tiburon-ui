@@ -9,18 +9,18 @@ import Nes from 'nes/client';
 // Need the appropriate path and port
 const client = new Nes.Client('ws://localhost:8080');
 
-async function connect() {
-  await client.connect();
+// async function connect() {
+//   await client.connect();
 
-  // Handler will receive messages from the server, need to hook into app state to initiate call flow, etc
-  const handler = (update, flags) => {
-    console.log({update, flags});
-  };
+//   // Handler will receive messages from the server, need to hook into app state to initiate call flow, etc
+//   const handler = (update, flags) => {
+//     console.log({update, flags});
+//   };
 
-  // the user ID here should be the same one submitted to /token
-  client.subscribe('/volunteer/alex', handler);
-}
-connect();
+//   // the user ID here should be the same one submitted to /token
+//   client.subscribe('/volunteer/alex', handler);
+// }
+// connect();
 // FIXME: END WEBSOCKET
 
 ReactDOM.render(<App />, document.getElementById('root'));
