@@ -5,8 +5,8 @@ import Register from './components/page/register';
 import Dashboard from './components/page/dashboard';
 import Search from './components/page/search';
 import Results from './components/page/results';
-// import Profile from './components/page/profile';
 import IncomingCall from './components/page/incoming-call'
+import Profile from './components/page/profile';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/navbar'
 import SendMessage from './components/page/send-message';
@@ -30,6 +30,7 @@ class App extends Component {
               {/* <Route path='/profile/:id' render={(props) => <Profile/>}/> */}
               { <Route path='/incomingCall' render={(props) => <IncomingCall/>}/> }
               { <Route path='/outgoingCall' render={(props) => <OutgoingCall/>}/> }
+                <Route path='/profile/:id' component={ Profile }/>
               {/* <Route path='/'
                 render={(props) => <Dashboard active={true} />} /> */}
             </Switch>
