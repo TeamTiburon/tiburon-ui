@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Splash from './components/page/splash';
 import Register from './components/page/register';
 import Dashboard from './components/page/dashboard';
 import Search from './components/page/search';
@@ -22,7 +23,7 @@ class App extends Component {
         <div>
 
             <Switch>
-
+              <Route exact path='/' render={(props) => <Splash {...props} />}/>              
               <Route path='/register' render={(props) => <Register {...props} />}/>
               <Route path='/dashboard' render={(props) => <Dashboard {...props} />}/>
               { <Route path='/search' render={(props) => <Search/>}/> }
