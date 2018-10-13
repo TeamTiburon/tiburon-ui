@@ -20,7 +20,7 @@ async function connect() {
   // the user ID here should be the same one submitted to /token
   client.subscribe('/volunteer/alex', handler);
 }
-connect();
+// connect();
 // FIXME: END WEBSOCKET
 
 ReactDOM.render(<App />, document.getElementById('root'));
