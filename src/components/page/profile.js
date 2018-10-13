@@ -86,7 +86,7 @@ class Profile extends Component {
                     <Grid container spacing={0}>
                         <Avatar
                         alt="Alejandro R."
-                        src="/data/aram.jpg"
+                        src={`${process.env.PUBLIC_URL}/img/aram.jpg`}
                         className={classes.bigAvatar}
                         />
                         <StarRate className={classes.rating}/>
@@ -116,6 +116,12 @@ class Profile extends Component {
                                 <li>Visa Process</li>
                                 <li>Medical Services</li>
                             </ul>
+                        </Grid>
+                        <Grid item xs={12} className={classes.gridy}>
+                            <h3>Bio</h3>
+                        </Grid>
+                        <Grid item xs={12} className={classes.gridy}>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </Grid>
                         <Videocam className={classes.icon}/>
                         <Chat className={classes.icon}/>    
