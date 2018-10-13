@@ -1,0 +1,22 @@
+[{
+    "displayName": "Alejandro Ramirez",
+    "languages": ["en", "es"],
+    "skills": [
+        "immigration",
+        "medical",
+        "visa"
+    ],
+    "available": true,
+    "rating": 5,
+    "location": "St. Louis, MO"
+}, {
+    "displayName": "Bob Barker",
+    "languages": ["en", "es"],
+    "skills": [
+        "medical",
+        "visa"
+    ],
+    "available": false,
+    "rating": 3.5,
+    "location": "Chicago, IL"
+}]
