@@ -152,7 +152,7 @@ class IncomingCall extends Component {
                 <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
 
                 <Sound
-                    url="/audio/old-phone-ringing.wav"
+                    url="/audio/old-phone-ringing.mp3"
                     playStatus={Sound.status.PLAYING}
                     loop
                     />

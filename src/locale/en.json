@@ -39,6 +39,7 @@
     "send_message": "Send Message",
     "sign_up": "Sign Up",
     "submit": "Submit",
+    "switch_camera": "Switch Camera",
     "translations": "Translations",
     "user_is_calling": "<1>{{userName}}</1> is calling",
     "video_call": "Video Call",
