@@ -2,6 +2,7 @@
     {
         "volunteer_id": 1,
         "name": "Alex Rains",
+        "login": "rains",
         "profile_picture": "/img/alex.jpg",
         "rating": 4,
         "location": "O'Fallon, IL",
@@ -11,6 +12,7 @@
     {
         "volunteer_id": 2,
         "name": "Josh Fischer",
+        "login": "fischer",
         "profile_picture": "/img/josh.jpg",
         "rating": 1,
         "location": "St. Louis, MO",
@@ -20,6 +22,7 @@
     {
         "volunteer_id": 3,
         "name": "Brandon Belvin",
+        "login": "belvin",
         "profile_picture": "/img/brandon.jpg",
         "rating": 4,
         "location": "O'Fallon, IL",
@@ -29,6 +32,7 @@
     {
         "volunteer_id": 4,
         "name": "John Ross",
+        "login": "ross",
         "profile_picture": "/img/john.jpg",
         "rating": 4,
         "location": "St. Louis, MO",
@@ -38,6 +42,7 @@
     {
         "volunteer_id": 5,
         "name": "Sean Walsh",
+        "login": "walsh",
         "profile_picture": "/img/sean.jpg",
         "rating": 5,
         "location": "St. Louis, MO",
@@ -47,6 +52,7 @@
     {
         "volunteer_id": 6,
         "name": "Alejandro Ramirez",
+        "login": "ramirez",
         "profile_picture": "/img/aram.jpg",
         "rating": 5,
         "location": "St. Louis, MO",
