@@ -25,6 +25,11 @@ const styles = theme => ({
         height: 100,
         width: '100%'
     },
+    name: {
+        fontSize: 16,
+        display: 'flex',
+        alignItems: 'baseline'
+    },
     location: {
         display: 'flex',
         alignItems: 'center'
@@ -38,6 +43,22 @@ const styles = theme => ({
     ratingStar: {
         width: 20,
         height: 20
+    },
+    online: {
+        display: 'inline-block',
+        width: 12,
+        height: 12,
+        backgroundColor: 'green',
+        borderRadius: '100%',
+        marginRight: 4
+    },
+    offline: {
+        display: 'inline-block',
+        width: 12,
+        height: 12,
+        backgroundColor: 'gray',
+        borderRadius: '100%',
+        marginRight: 4
     }
 });
 
@@ -46,6 +67,7 @@ class VolunteerCard extends Component {
     constructor(props) {
         super(props);
         this.volunteer = this.props.volunteer;
+        this.online = this.props.online;
         this.viewVolunteerDetails = this.viewVolunteerDetails.bind(this);
     }
 
@@ -79,7 +101,8 @@ class VolunteerCard extends Component {
                   title="Volunteer Profile Picture"
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h6">
+                  <Typography gutterBottom className={classes.name}>
+                    <span className={this.online ? classes.online : classes.offline}></span>
                     {this.volunteer.name}
                   </Typography>
                   <div className={classes.rating}>
