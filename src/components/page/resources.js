@@ -14,7 +14,7 @@ const styles = theme => ({
     },
     header: {
         display: 'flex',
-        alignItems: 'start',
+        alignItems: 'center',
         margin: '0 0 16px -16px'
     },
     title: {
