@@ -58,7 +58,6 @@ const styles = theme => ({
     }
 });
 
-
 class IncomingCall extends Component {
 
     constructor(props) {
@@ -110,16 +109,6 @@ class IncomingCall extends Component {
 
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
         const { classes, t } = this.props;
         const { userName } = this.state;
 

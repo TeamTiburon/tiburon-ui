@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import ResourceCard from '../resource-card/resource-card';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import { withNamespaces, Trans } from "react-i18next";
 
 const resources = require('../../data/resources.json');
 
@@ -98,4 +99,4 @@ class LocalInformation extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(LocalInformation));
+export default withNamespaces()(withStyles(styles)(withRouter(LocalInformation)));

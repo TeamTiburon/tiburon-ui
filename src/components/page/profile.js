@@ -17,6 +17,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { withNamespaces, Trans } from "react-i18next";
 
 const volunteers = require('../../data/volunteers.json');
 
@@ -228,13 +229,13 @@ class Profile extends Component {
                         <h3>{t('languages')}</h3>
 
                         <ul>
-                            {volunteer.languages.map((language, i) => <li key={i}>{language}</li>)}
+                            {volunteer.languages.map((language, i) => <li key={i}>{t(language)}</li>)}
                         </ul>
 
                         <h3>{t('knowledge_areas')}</h3>
 
                         <ul>
-                            {volunteer.knowledge.map((knowledge, i) => <li key={i}>{knowledge}</li>)}
+                            {volunteer.knowledge.map((knowledge, i) => <li key={i}>{t(knowledge)}</li>)}
                         </ul>
 
                         <h3>{t('bio')}</h3>
@@ -252,4 +253,4 @@ class Profile extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Profile));
+export default withNamespaces()(withStyles(styles)(withRouter(Profile)));

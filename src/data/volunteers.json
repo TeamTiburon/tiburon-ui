@@ -6,8 +6,8 @@
         "profile_picture": "/img/alex.jpg",
         "rating": 4,
         "location": "O'Fallon, IL",
-        "languages": [ "English", "French" ],
-        "knowledge": [ "Visa Process", "Immigration Law", "Translations", "Community" ]
+        "languages": [ "lang_en", "lang_fr" ],
+        "knowledge": [ "visa_process", "imm_law", "translations", "community" ]
     },
     {
         "volunteer_id": 2,
@@ -16,8 +16,8 @@
         "profile_picture": "/img/josh.jpg",
         "rating": 1,
         "location": "St. Louis, MO",
-        "languages": [ "English" ],
-        "knowledge": [ "Community", "Immigration Law", "Visa Process", "Translations" ]
+        "languages": [ "lang_en" ],
+        "knowledge": [ "community", "imm_law", "visa_process", "translations" ]
     },
     {
         "volunteer_id": 3,
@@ -26,8 +26,8 @@
         "profile_picture": "/img/brandon.jpg",
         "rating": 4,
         "location": "O'Fallon, IL",
-        "languages": [ "English", "Español" ],
-        "knowledge": [ "Visa Process", "Medical Services", "Translations" ]
+        "languages": [ "lang_en", "lang_es" ],
+        "knowledge": [ "visa_process", "medical_services", "translations" ]
     },
     {
         "volunteer_id": 4,
@@ -36,8 +36,8 @@
         "profile_picture": "/img/john.jpg",
         "rating": 4,
         "location": "St. Louis, MO",
-        "languages": [ "English", "Español" ],
-        "knowledge": [ "Community", "Translations" ]
+        "languages": [ "lang_en", "lang_es" ],
+        "knowledge": [ "community", "translations" ]
     },
     {
         "volunteer_id": 5,
@@ -46,8 +46,8 @@
         "profile_picture": "/img/sean.jpg",
         "rating": 5,
         "location": "St. Louis, MO",
-        "languages": [ "English", "Español", "French" ],
-        "knowledge": [ "Medical Services", "Immigration Law", "Translations" ]
+        "languages": [ "lang_en", "lang_es", "lang_fr" ],
+        "knowledge": [ "medical_services", "imm_law", "translations" ]
     },
     {
         "volunteer_id": 6,
@@ -56,7 +56,7 @@
         "profile_picture": "/img/aram.jpg",
         "rating": 5,
         "location": "St. Louis, MO",
-        "languages": [ "English", "Español" ],
-        "knowledge": [ "Immigration Law", "Visa Process", "Translations" ]
+        "languages": [ "lang_en", "lang_es" ],
+        "knowledge": [ "imm_law", "visa_process", "translations" ]
     }
 ]

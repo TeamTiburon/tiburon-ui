@@ -91,23 +91,13 @@ class SendMessage extends Component {
 
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
         const { classes, t } = this.props;
 
         const { name } = this.state.profile;
 
         return (
             <div>
-                <h4 className={classes.subHeader}> 
+                <h4 className={classes.subHeader}>
                 <Trans i18nKey='message_to_name' name={name}>
                     Message to {{name}}
                 </Trans></h4>

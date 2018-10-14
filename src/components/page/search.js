@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
+import { withNamespaces, Trans } from "react-i18next";
 
 const styles = theme => ({
     root: {
@@ -34,22 +35,16 @@ const styles = theme => ({
 });
 
 const topics = [
-    'Immigration Law',
-    'Community',
-    'Translations',
-    'Medical Services',
-    'Visa Process'
+    'imm_law',
+    'community',
+    'translations',
+    'medical_services',
+    'visa_process'
 ];
 
 const languages = [
-    {
-        value: 'ENG',
-        label: 'English',
-    },
-    {
-        value: 'ES',
-        label: 'Español',
-    }
+    'lang_en',
+    'lang_es'
 ];
 
 class Search extends Component {
@@ -82,7 +77,7 @@ class Search extends Component {
     }
 
     render() {
-        const { classes, theme, t } = this.props;
+        const { classes, t } = this.props;
 
         return (
             <div className={classes.root}>
@@ -101,7 +96,7 @@ class Search extends Component {
                                     <MenuItem
                                         key={topic}
                                         value={topic}>
-                                        {topic}
+                                        {t(topic)}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -117,9 +112,9 @@ class Search extends Component {
                                 input={<Input id="language" name="language" />}>
                                 {languages.map(language => (
                                     <MenuItem
-                                        key={language.label}
-                                        value={language.label}>
-                                        {language.label}
+                                        key={language}
+                                        value={language}>
+                                        {t(language)}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -137,4 +132,4 @@ class Search extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Search));
+export default withNamespaces()(withStyles(styles)(withRouter(Search)));

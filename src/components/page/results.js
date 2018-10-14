@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import VolunteerCard from '../volunteer-card/volunteer-card';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import { withNamespaces, Trans } from "react-i18next";
 
 const volunteers = require('../../data/volunteers.json');
 
@@ -158,4 +159,4 @@ class Results extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Results));
+export default withNamespaces()(withStyles(styles)(withRouter(Results)));

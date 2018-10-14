@@ -27,7 +27,7 @@
     "in_language": "In the language...",
     "find_help": "Find Help",
     "message_to_name": "Message to <1>{{name}}</1>",
-    "enter_message": "Enter your message here....",
+    "enter_message": "Enter your message here...",
     "connect": "Connect with help while maintaining your privacy",
     "get_started": "Get Started",
     "volunteer_login": "Volunteer Log In",
@@ -37,6 +37,14 @@
     "volunteer_pic": "Volunteer Profile Picture",
     "enable_video": "Enable Video",
     "hang_up": "Hang Up",
-    "calling": "Calling ...."
+    "calling": "Calling ....",
+    "imm_law": "Immigration Law",
+    "visa_process": "Visa Process",
+    "medical_services": "Medical Services",
+    "community": "Community",
+    "translations": "Translations",
+    "lang_en": "Inglés",
+    "lang_es": "Español",
+    "lang_fr": "Francés"
   }
 }

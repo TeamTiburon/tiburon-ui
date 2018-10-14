@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom";
+import { withNamespaces, Trans } from "react-i18next";
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -139,4 +140,4 @@ class Register extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Register));
+export default withNamespaces()(withStyles(styles)(withRouter(Register)));

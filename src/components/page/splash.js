@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Flip from 'react-reveal/Flip';
+import { withNamespaces, Trans } from "react-i18next";
 
 const styles = theme => ({
     root: {
@@ -71,4 +72,4 @@ class Splash extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Splash));
+export default withNamespaces()(withStyles(styles)(withRouter(Splash)));

@@ -37,6 +37,14 @@
     "volunteer_pic": "Volunteer Profile Picture",
     "enable_video": "Enable Video",
     "hang_up": "Hang Up",
-    "calling": "Calling ...."
+    "calling": "Calling ....",
+    "imm_law": "Immigration Law",
+    "visa_process": "Visa Process",
+    "medical_services": "Medical Services",
+    "community": "Community",
+    "translations": "Translations",
+    "lang_en": "English",
+    "lang_es": "Spanish",
+    "lang_fr": "French"
   }
 }
