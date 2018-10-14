@@ -5,10 +5,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Nes from 'nes/client';
 
+import i18n from './i18n';
+import { I18nextProvider } from 'react-i18next';
+
 export const client = new Nes.Client('wss://backend.doc.money');
 
 client.connect().then(() => {
-    ReactDOM.render(<App />, document.getElementById('root'));
+    ReactDOM.render(
+        <I18nextProvider i18n={ i18n }>
+            <App />
+        </I18nextProvider>, document.getElementById('root'));
 });
 
 serviceWorker.register();

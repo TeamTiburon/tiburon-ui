@@ -12,27 +12,9 @@ import SendMessage from './components/page/send-message';
 import OutgoingCall from './components/page/outgoing-call';
 import VolunteerDashboard from './components/page/volunteer-dashboard';
 import VolunteerLogin from './components/page/volunteer-login';
-import LocalInformation from './components/page/resources'
-;import i18n from "i18next";
-import { withI18n, reactI18nextModule } from "react-i18next";
+import LocalInformation from './components/page/resources';
 import './App.css';
 
-import en from './locale/en.json';
-import es from './locale/es.json';
-
-i18n
-  .use(reactI18nextModule) // passes i18n down to react-i18next
-  .init({
-    resources: {
-      en,
-      es
-    },
-    lng: window.navigator.language,
-    fallbackLng: "en",
-    interpolation: {
-      escapeValue: false
-    }
-  });
 
 class App extends Component {
   render() {
@@ -63,4 +45,4 @@ class App extends Component {
   }
 }
 
-export default withI18n()(App);
+export default App;

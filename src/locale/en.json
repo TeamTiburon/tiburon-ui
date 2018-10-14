@@ -1,5 +1,6 @@
 {
   "translation": {
-    "home": "Home"
+    "i_need": "I need...",
+    "hello_my_name": "Hello <1>{{name}}</1>"
   }
 }

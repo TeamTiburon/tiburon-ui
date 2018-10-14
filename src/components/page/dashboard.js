@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+import { withNamespaces, Trans } from "react-i18next";
 
 const styles = theme => ({
     root: {
@@ -53,21 +52,18 @@ class Dashboard extends Component {
 
     componentDidMount() {
         var userJson = JSON.parse(localStorage.getItem('user'));
-        console.log("userJson, ", userJson)
         this.setState({
             user: userJson
         })
-        
-
     }
 
     handleChange(event) {
        // this.setState({ [event.target.name]: event.target.value });
     }
-    
+
     getLiveAssistance(event) {
         this.props.history.push('/search')
-        
+
     }
 
     getLocalInformation(event) {
@@ -81,43 +77,39 @@ class Dashboard extends Component {
     }
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
-        const { classes } = this.props;
+        const { classes, t } = this.props;
+
+        const { displayName: name } = this.state.user;
 
         return (
             <div>
-                <h1 className={classes.header}>Hello {this.state.user.displayName}!</h1>
+                <h1 className={classes.header}>
+                    <Trans i18nKey='hello_my_name' name={name}>
+                        Hello {{name}}
+                    </Trans>
+                </h1>
 
 
-                <h4 className={classes.subHeader}> I need...</h4>
+                <h4 className={classes.subHeader}>{t('i_need')}</h4>
 
 
                     <div className={classes.root}>
                         <Grid container spacing={8}>
-                            
+
                             <Grid item xs={12} className={classes.gridy}>
-                                <Button 
+                                <Button
                                 variant="contained"
-                                 color="primary" 
-                                 onClick={this.getLiveAssistance} 
+                                 color="primary"
+                                 onClick={this.getLiveAssistance}
                                  className={classes.button}>
                                     Live Assistance
                                 </Button>
                             </Grid>
                             <Grid item xs={12} className={classes.gridy}>
                                 <Button
-                                 variant="contained" 
-                                 color="primary" 
-                                 onClick={this.getLocalInformation} 
+                                 variant="contained"
+                                 color="primary"
+                                 onClick={this.getLocalInformation}
                                  className={classes.button}>
                                     Local Information
                                 </Button>
@@ -130,4 +122,4 @@ class Dashboard extends Component {
     }
 }
 
-export default withStyles(styles)(Dashboard);
+export default withNamespaces()(withStyles(styles)(Dashboard));
