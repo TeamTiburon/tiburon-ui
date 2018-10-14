@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import queryString from 'query-string';
+import VideoComponent from '../video/VideoComponent';
 
 const styles = theme => ({
     root: {
@@ -61,19 +62,16 @@ class IncomingCall extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
-        }
+            ...this.props.location.state,
+            token: null,
+            identity: null
+        };
 
         this.sendMessageToUser = this.sendMessageToUser.bind(this);
         this.answer = this.answer.bind(this);
-
-        this.parseQuery(queryString.parse(this.props.location.search));
     }
 
-    parseQuery(values) {
-        this.roomName = values.roomName;
-        this.userName = values.userName;
-
+    componentDidMount() {
         const volunteer = JSON.parse(localStorage.getItem('volunteer'));
 
         fetch(`http://35.184.88.156:8080/token`, {
@@ -86,13 +84,11 @@ class IncomingCall extends Component {
             })
         }).then((response) => response.json())
         .then((data) => {
-            this.token = data.token;
-            this.identity = data.identity;
+            this.setState({
+                token: data.token,
+                identity: data.identity
+            });
         });
-    }
-
-    componentDidMount() {
-
     }
 
     sendMessageToUser(event) {
@@ -118,31 +114,41 @@ class IncomingCall extends Component {
         ];
         const { classes } = this.props;
 
-        return (<div className={classes.loadingSpinner}>
+        if (!this.state.token) {
+            return (<div className={classes.loadingSpinner}>
 
-            <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
+                <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
 
-            <h4 style={{ color: "#fff" }}>
-                {this.userName} is calling
-                </h4>
-            <div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.answer}
-                        className={classes.button}>
-                        Answer
-                                </Button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.sendMessageToUser}
-                        className={classes.button}>
-                        Send Message
-                                </Button>
-            </div>
-        </div>);
+                <h4 style={{ color: "#fff" }}>
+                    {this.userName} is calling
+                    </h4>
+                <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.answer}
+                            className={classes.button}>
+                            Answer
+                                    </Button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.sendMessageToUser}
+                            className={classes.button}>
+                            Send Message
+                                    </Button>
+                </div>
+            </div>);
+        } else {
+            return (
+                <div>
+                    <VideoComponent
+                        {...this.state}
+                        />
+                </div>
+            );
+        }
     }
 }
 export default withStyles(styles)(withRouter(IncomingCall));
