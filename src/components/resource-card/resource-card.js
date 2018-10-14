@@ -13,6 +13,8 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
+import { withNamespaces } from "react-i18next";
+
 const styles = theme => ({
     root: {
         margin: 8,
@@ -60,7 +62,7 @@ class ResourceCard extends Component {
 
 
     render() {
-        const { classes } = this.props;
+        const { classes, t } = this.props;
 
         var stars = [];
         var emptyStars = [];
@@ -78,7 +80,7 @@ class ResourceCard extends Component {
               <CardActionArea className={classes.cardDetail} >
                 <CardMedia className={classes.media}
                   image={this.volunteer.profile_picture}
-                  title="Volunteer Profile Picture"
+                  title={t('volunteer_pic')}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h6">
@@ -103,4 +105,4 @@ class ResourceCard extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(ResourceCard));
+export default withNamespaces()(withStyles(styles)(withRouter(ResourceCard)));

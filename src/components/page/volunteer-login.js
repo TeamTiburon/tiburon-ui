@@ -11,6 +11,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKey from '@material-ui/icons/VpnKey';
 
+import { withNamespaces } from "react-i18next";
+
 const volunteers = require('../../data/volunteers.json');
 
 const styles = theme => ({
@@ -66,11 +68,11 @@ class VolunteerLogin extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, t } = this.props;
 
         return (
             <div>
-                <h1 className={classes.header}>Volunteer Log In</h1>
+                <h1 className={classes.header}>{t('volunteer_login')}</h1>
 
                 <form noValidate autoComplete="off">
 
@@ -79,7 +81,7 @@ class VolunteerLogin extends Component {
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="login"
-                                    label="Login"
+                                    label={t('login')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="login"
@@ -97,7 +99,7 @@ class VolunteerLogin extends Component {
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="password"
-                                    label="Password"
+                                    label={t('password')}
                                     type="password"
                                     margin="normal"
                                     className={classes.flexy}
@@ -114,7 +116,7 @@ class VolunteerLogin extends Component {
                             </Grid>
                             <Grid item xs={12} className={classes.gridy}>
                                 <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                                    Log In
+                                    {t('log_in')}
                                 </Button>
                             </Grid>
                         </Grid>
@@ -126,4 +128,4 @@ class VolunteerLogin extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(VolunteerLogin));
+export default withNamespaces()(withStyles(styles)(withRouter(VolunteerLogin)));

@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import { Card, CardHeader, CardText } from "@material-ui/core/Card";
 import Phone from '@material-ui/icons/Phone';
 
+import { withNamespaces } from "react-i18next";
+
 import './VideoComponent.css';
 
 const styles = theme => ({
@@ -213,7 +215,7 @@ class VideoComponent extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, t } = this.props;
 
     // Only show video track after user has joined a room
     let showLocalTrack = this.state.localMediaAvailable ? (
@@ -223,7 +225,7 @@ class VideoComponent extends Component {
     ) : null;
 
     const toggleMute = this.state.muteVideo ? (
-        <Button id="unmute-video" variant="raised" onClick={this.enableVideo}>Enable Video</Button>
+        <Button id="unmute-video" variant="raised" onClick={this.enableVideo}>{t('enable_video')}</Button>
     ) : showLocalTrack;
 
     return (
@@ -232,13 +234,13 @@ class VideoComponent extends Component {
             {toggleMute}
             <div className="flex-item">
                 <Button
-                    label="Hang Up"
+                    label={t('hang_up')}
                     color="secondary"
                     variant="raised"
                     id="hang-up-button"
                     disabled={!this.state.activeRoom}
                     onClick={this.props.hangup}
-                >Hang Up</Button>
+                >{t('hang_up')}</Button>
             </div>
             <div className="flex-item" ref={this.remoteMedia} id="remote-media">
                 { !this.state.answered &&
@@ -246,7 +248,7 @@ class VideoComponent extends Component {
                         <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
 
                         <h4 style={{ color: "#fff" }}>
-                            Calling ....
+                            {t('calling')}
                         </h4>
                     </div>
                 }
@@ -255,7 +257,7 @@ class VideoComponent extends Component {
     );
   }
 }
-export default withStyles(styles)(VideoComponent);
+export default withNamespaces()(withStyles(styles)(VideoComponent));
 
 VideoComponent.defaultProps = {
   callAnswered: () => {},

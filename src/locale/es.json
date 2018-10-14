@@ -29,6 +29,14 @@
     "message_to_name": "Message to <1>{{name}}</1>",
     "enter_message": "Enter your message here....",
     "connect": "Connect with help while maintaining your privacy",
-    "get_started": "Get Started"
+    "get_started": "Get Started",
+    "volunteer_login": "Volunteer Log In",
+    "login": "Login",
+    "password": "Password",
+    "log_in": "Log In",
+    "volunteer_pic": "Volunteer Profile Picture",
+    "enable_video": "Enable Video",
+    "hang_up": "Hang Up",
+    "calling": "Calling ...."
   }
 }
