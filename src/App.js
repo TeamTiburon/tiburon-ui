@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Splash from './components/page/splash';
 import Register from './components/page/register';
 import Dashboard from './components/page/dashboard';
@@ -14,13 +12,32 @@ import SendMessage from './components/page/send-message';
 import OutgoingCall from './components/page/outgoing-call';
 import VolunteerDashboard from './components/page/volunteer-dashboard';
 import VolunteerLogin from './components/page/volunteer-login';
-import LocalInformation from './components/page/resources';
+import LocalInformation from './components/page/resources'
+;import i18n from "i18next";
+import { withI18n, reactI18nextModule } from "react-i18next";
+import './App.css';
+
+import en from './locale/en.json';
+import es from './locale/es.json';
+
+i18n
+  .use(reactI18nextModule) // passes i18n down to react-i18next
+  .init({
+    resources: {
+      en,
+      es
+    },
+    lng: window.navigator.language,
+    fallbackLng: "en",
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 class App extends Component {
   render() {
     return (
       <div>
-
       <BrowserRouter>
 
         <div>
@@ -46,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withI18n()(App);
