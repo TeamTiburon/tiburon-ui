@@ -45,7 +45,7 @@ class Navbar extends Component {
                         {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton> */}
-                        <img alt="Tiburon" src="./img/tiburonTitle.png" style={{margin: "auto"}} onClick={this.handleClick}/>
+                        <img alt="Tiburon" src="/img/tiburonTitle.png" style={{margin: "auto"}} onClick={this.handleClick}/>
                     </Toolbar>
                 </AppBar>
             </div>

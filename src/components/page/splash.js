@@ -54,7 +54,7 @@ class Splash extends Component {
                 <Grid container spacing={24}>
                     <Grid item xs={12} className={classes.gridy}>
                         <Flip left>
-                            <img alt="Tiburon" src="./img/tiburon.png" style={{maxWidth: 250, maxHeight: 200, margin: 'auto'}} />
+                            <img alt="Tiburon" src="/img/tiburon.png" style={{maxWidth: 250, maxHeight: 200, margin: 'auto'}} />
                         </Flip>
                     </Grid>
 
