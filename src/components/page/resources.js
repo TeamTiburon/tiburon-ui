@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
-import VolunteerCard from '../volunteer-card/volunteer-card';
+import ResourceCard from '../resource-card/resource-card';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -70,7 +70,7 @@ class LocalInformation extends Component {
     }
 
     goBack(event) {
-        this.props.history.push('/search');
+        this.props.history.push('/dashboard');
     }
 
     render() {
@@ -120,7 +120,7 @@ class LocalInformation extends Component {
                 </div>
 
                 <div className={classes.cardContainer}>
-                    {sortedVolunteers.map((volunteer, i) => <VolunteerCard key={i} volunteer={volunteer}/>)}
+                    {sortedVolunteers.map((volunteer, i) => <ResourceCard key={i} volunteer={volunteer}/>)}
                 </div>
             </div>
         );

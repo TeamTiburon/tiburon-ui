@@ -1,51 +1,13 @@
 [
     {
-        "volunteer_id": 1,
-        "name": "Alex Rains",
-        "login": "rains",
-        "profile_picture": "/img/alex.jpg",
-        "rating": 4,
-        "location": "O'Fallon, IL",
-        "languages": [ "English", "French" ],
-        "knowledge": [ "Visa Process", "Immigration Law", "Translations", "Community" ]
-    },
-    {
-        "volunteer_id": 2,
-        "name": "Josh Fischer",
-        "login": "fischer",
-        "profile_picture": "/img/josh.jpg",
-        "rating": 1,
-        "location": "St. Louis, MO",
-        "languages": [ "English" ],
-        "knowledge": [ "Community", "Immigration Law", "Visa Process", "Translations" ]
-    },
-    {
-        "volunteer_id": 3,
-        "name": "Brandon Belvin",
-        "login": "belvin",
-        "profile_picture": "/img/brandon.jpg",
-        "rating": 4,
-        "location": "O'Fallon, IL",
-        "languages": [ "English", "Español" ],
-        "knowledge": [ "Visa Process", "Medical Services", "Translations" ]
-    },
-    {
-        "volunteer_id": 4,
-        "name": "John Ross",
-        "login": "ross",
-        "profile_picture": "/img/john.jpg",
-        "rating": 4,
-        "location": "St. Louis, MO",
-        "languages": [ "English", "Español" ],
-        "knowledge": [ "Community", "Translations" ]
-    },
-    {
         "volunteer_id": 5,
         "name": "Immigrant & Refugee Women's Program",
         "login": "walsh",
         "profile_picture": "/img/irwp.gif",
         "rating": 5,
         "location": "3672B Arsenal St., St. Louis, MO 63116",
+        "phone": "314-771-1104",
+        "url": "http://www.irwp.net/",
         "languages": [ "English", "Español", "French" ],
         "knowledge": [ "Medical Services", "Immigration Law", "Translations" ]
     },
@@ -56,6 +18,8 @@
         "profile_picture": "/img/iistl.jpg",
         "rating": 5,
         "location": "3401 Arsenal St., St. Louis, MO",
+        "phone": "314-773-9090",
+        "url": "https://www.iistl.org",
         "languages": [ "English", "Español" ],
         "knowledge": [ "Immigration Law", "Visa Process", "Translations" ]
     }
