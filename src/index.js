@@ -22,7 +22,10 @@ export const connection = (function() {
         if(update.type === 'call_incoming') {
             history.push({
                 pathname: '/incomingCall',
-                search: '?roomName=' + update.roomName + '&userName=' + update.userName
+                state: {
+                  roomname: update.roomName,
+                  userName: update.userName
+                }
             });
         }
 

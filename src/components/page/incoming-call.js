@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import queryString from 'query-string';
+import VideoComponent from '../video/VideoComponent';
 
 const styles = theme => ({
     root: {
@@ -61,8 +62,8 @@ class IncomingCall extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
-        }
+            ...this.props.location.state
+        };
 
         this.sendMessageToUser = this.sendMessageToUser.bind(this);
         this.answer = this.answer.bind(this);
@@ -102,31 +103,39 @@ class IncomingCall extends Component {
         ];
         const { classes } = this.props;
 
-        return (<div className={classes.loadingSpinner}>
-
-            <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
-
-            <h4 style={{ color: "#fff" }}>
-                {this.userName} is calling
-                </h4>
+        return (
             <div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.answer}
-                        className={classes.button}>
-                        Answer
-                                </Button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.sendMessageToUser}
-                        className={classes.button}>
-                        Send Message
-                                </Button>
+                <VideoComponent
+                    {...this.props.location.state}
+                    />
             </div>
-        </div>);
+        );
+
+        // return (<div className={classes.loadingSpinner}>
+
+        //     <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
+
+        //     <h4 style={{ color: "#fff" }}>
+        //         {this.userName} is calling
+        //         </h4>
+        //     <div>
+        //             <Button
+        //                 variant="contained"
+        //                 color="primary"
+        //                 onClick={this.answer}
+        //                 className={classes.button}>
+        //                 Answer
+        //                         </Button>
+        //             &nbsp;&nbsp;&nbsp;&nbsp;
+        //             <Button
+        //                 variant="contained"
+        //                 color="primary"
+        //                 onClick={this.sendMessageToUser}
+        //                 className={classes.button}>
+        //                 Send Message
+        //                         </Button>
+        //     </div>
+        // </div>);
     }
 }
 export default withStyles(styles)(withRouter(IncomingCall));

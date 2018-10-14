@@ -4,6 +4,7 @@ import Phone from '@material-ui/icons/Phone';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import VideoComponent from '../video/VideoComponent';
 
 const styles = theme => ({
     root: {
@@ -59,6 +60,9 @@ class OutgoingCall extends Component {
 
     constructor(props) {
         super(props);
+
+        console.log(props);
+
         this.state = {
 
         }
@@ -88,6 +92,10 @@ class OutgoingCall extends Component {
         this.props.history.push("/results")
     }
 
+    callAnswered(event) {
+
+    }
+
 
     render() {
         const languages = [
@@ -102,24 +110,32 @@ class OutgoingCall extends Component {
         ];
         const { classes } = this.props;
 
-        return (<div className={classes.loadingSpinner}>
-
-            <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
-
-            <h4 style={{ color: "#fff" }}>
-                Calling ....
-                </h4>
+        return (
             <div>
-                    
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={this.cancel}
-                        className={classes.button}>
-                        Cancel
-                                </Button>
+                <VideoComponent
+                    {...this.props.location.state}
+                    />
             </div>
-        </div>);
+        )
+
+        // return (<div className={classes.loadingSpinner}>
+
+        //     <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
+
+        //     <h4 style={{ color: "#fff" }}>
+        //         Calling ....
+        //         </h4>
+        //     <div>
+
+        //             <Button
+        //                 variant="contained"
+        //                 color="secondary"
+        //                 onClick={this.cancel}
+        //                 className={classes.button}>
+        //                 Cancel
+        //                         </Button>
+        //     </div>
+        // </div>);
     }
 }
 export default withStyles(styles)(withRouter(OutgoingCall));

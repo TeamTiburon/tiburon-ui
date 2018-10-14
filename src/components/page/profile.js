@@ -118,14 +118,17 @@ class Profile extends Component {
                 })
             })
             .then((response) => response.json())
-            .then(({ roomName }) => {
+            .then((data) => {
+                console.log({identity, token, data})
                 this.props.history.push({
                     pathname: '/outgoingCall',
-                    roomName,
-                    volunteer: volunteer,
-                    volunteerId: volunteerId,
-                    token,
-                    identity
+                    state: {
+                        roomName: data.roomName,
+                        volunteer,
+                        volunteerId,
+                        token,
+                        identity
+                    }
                 });
             });
         }).catch((e) => {
