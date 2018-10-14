@@ -119,25 +119,6 @@ class OutgoingCall extends Component {
                     />
             </div>
         )
-
-        // return (<div className={classes.loadingSpinner}>
-
-        //     <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
-
-        //     <h4 style={{ color: "#fff" }}>
-        //         Calling ....
-        //         </h4>
-        //     <div>
-
-        //             <Button
-        //                 variant="contained"
-        //                 color="secondary"
-        //                 onClick={this.cancel}
-        //                 className={classes.button}>
-        //                 Cancel
-        //                         </Button>
-        //     </div>
-        // </div>);
     }
 }
 export default withStyles(styles)(withRouter(OutgoingCall));
