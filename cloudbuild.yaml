@@ -5,5 +5,5 @@ steps:
   args: ['run', 'build']
 artifacts:
     objects:
-        location: 'gs://tiburon-ui/'
+        location: 'gs://tiburon.doc.money'
         paths: ['build','public','data']
