@@ -6,4 +6,4 @@ steps:
 artifacts:
   objects:
     location: 'gs://tiburon.doc.money'
-    paths: ['build/**.json','build/**.png','build/**.json','build/**.html','build/**.js','static/css/**.css','static/js/**.js','media/**.svg','img/**.jpg']
+    paths: ['build/**.json','build/**.png','build/**.html','build/**.js','static/css/**.css','static/js/**.js','media/**.svg','img/**.jpg']
