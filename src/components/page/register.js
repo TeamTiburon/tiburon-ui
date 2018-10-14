@@ -32,6 +32,11 @@ const styles = theme => ({
     }
 });
 
+const languages = [
+    'lang_en',
+    'lang_es'
+];
+
 class Register extends Component {
 
     constructor(props) {
@@ -59,16 +64,6 @@ class Register extends Component {
     }
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
         const { classes, t } = this.props;
 
         return (
@@ -120,8 +115,8 @@ class Register extends Component {
 
                                 >
                                     {languages.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
+                                        <MenuItem key={option} value={option}>
+                                            {t(option)}
                                         </MenuItem>
                                     ))}
                                 </TextField>
