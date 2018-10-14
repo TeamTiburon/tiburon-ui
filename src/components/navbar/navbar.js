@@ -17,13 +17,27 @@ const styles = {
 };
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props)
+
+        this.handleClick.bind(this)
+    }
 
     onComponentDidMount() {
     }
 
+    handleClick() {
+        if (!['/', '/register', '/dashboard', '/volunteerDashBoard'].includes(window.location.pathname)) {
+            if (localStorage.getItem('volunteer')) {
+                window.location.pathname = '/volunteerDashBoard';
+            } else {
+                window.location.pathname = '/dashboard';
+            }
+        }
+    }
+
     render() {
         const { classes } = this.props;
-
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -31,7 +45,7 @@ class Navbar extends Component {
                         {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton> */}
-                        <img alt="Tiburon" src="./img/tiburonTitle.png" style={{margin: "auto"}}/>
+                        <img alt="Tiburon" src="./img/tiburonTitle.png" style={{margin: "auto"}} onClick={this.handleClick}/>
                     </Toolbar>
                 </AppBar>
             </div>
