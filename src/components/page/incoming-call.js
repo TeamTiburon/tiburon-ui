@@ -96,7 +96,7 @@ class IncomingCall extends Component {
 
     sendMessageToUser(event) {
         console.log("send message")
-        this.props.history.push("/sendMessage")
+        this.props.history.goBack();
     }
 
     answer(event) {

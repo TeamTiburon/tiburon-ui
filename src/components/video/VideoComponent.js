@@ -98,7 +98,7 @@ class VideoComponent extends Component {
       name: this.props.roomName,
       audio: true,
       video: {
-          aspectRatio: this.windowSizer.current.clientWidth / this.windowSizer.current.clientHeight
+          aspectRatio: 1 / (this.windowSizer.current.clientWidth / this.windowSizer.current.clientHeight)
       }
     };
 
@@ -243,7 +243,7 @@ class VideoComponent extends Component {
                     id="hang-up-button"
                     disabled={!this.state.activeRoom}
                     onClick={this.props.hangup}
-                >{t('hang_up')}, {this.state.sizes[0]}, {this.state.sizes[1]}</Button>
+                >{t('hang_up')}</Button>
             </div>
             <div className="flex-item" ref={this.remoteMedia} id="remote-media">
                 { !this.state.answered &&
