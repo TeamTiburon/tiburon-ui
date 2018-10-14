@@ -13,7 +13,8 @@ export default class VideoComponent extends Component {
       previewTracks: null,
       localMediaAvailable: false,
       hasJoinedRoom: false,
-      activeRoom: "" // Track the current active room
+      activeRoom: "", // Track the current active room
+      muteVideo: props.muteVideo
     };
     this.joinRoom = this.joinRoom.bind(this);
     this.roomJoined = this.roomJoined.bind(this);
@@ -21,6 +22,10 @@ export default class VideoComponent extends Component {
     this.attachParticipantTracks = this.attachParticipantTracks.bind(this);
     this.detachTracks = this.detachTracks.bind(this);
     this.detachParticipantTracks = this.detachParticipantTracks.bind(this);
+    this.enableVideo = this.enableVideo.bind(this);
+
+    this.localMedia = React.createRef();
+    this.remoteMedia = React.createRef();
   }
 
   componentDidMount() {
@@ -29,6 +34,20 @@ export default class VideoComponent extends Component {
 
   componentWillUnmount() {
     this.state.activeRoom.disconnect();
+  }
+
+  enableVideo() {
+    const { activeRoom } = this.state;
+    this.setState({ muteVideo: false }, () => {
+        activeRoom.localParticipant.videoTracks.forEach((videoTrack) => {
+            videoTrack.enable();
+        });
+
+        var previewContainer = this.localMedia.current;
+        if (!previewContainer.querySelector("video")) {
+            this.attachParticipantTracks(activeRoom.localParticipant, previewContainer);
+        }
+    });
   }
 
   joinRoom() {
@@ -88,16 +107,23 @@ export default class VideoComponent extends Component {
       hasJoinedRoom: true
     });
 
-    // Attach LocalParticipant's Tracks, if not already attached.
-    var previewContainer = this.refs.localMedia;
-    if (!previewContainer.querySelector("video")) {
-      this.attachParticipantTracks(room.localParticipant, previewContainer);
+    // Disable local video
+    if (this.state.muteVideo) {
+        room.localParticipant.videoTracks.forEach((videoTrack) => {
+            videoTrack.disable();
+        });
+    } else {
+        // Attach LocalParticipant's Tracks, if not already attached.
+        var previewContainer = this.localMedia.current;
+        if (!previewContainer.querySelector("video")) {
+            this.attachParticipantTracks(room.localParticipant, previewContainer);
+        }
     }
 
     // Attach the Tracks of the room's participants.
     room.participants.forEach(participant => {
       console.log("Already in Room: '" + participant.identity + "'");
-      var previewContainer = this.refs.remoteMedia;
+      var previewContainer = this.remoteMedia.current;
       this.attachParticipantTracks(participant, previewContainer);
     });
 
@@ -109,7 +135,7 @@ export default class VideoComponent extends Component {
     // Attach participant’s tracks to DOM when they add a track
     room.on("trackAdded", (track, participant) => {
       console.log(participant.identity + " added track: " + track.kind);
-      var previewContainer = this.refs.remoteMedia;
+      var previewContainer = this.remoteMedia.current;
       this.attachTracks([track], previewContainer);
     });
 
@@ -143,9 +169,13 @@ export default class VideoComponent extends Component {
     // Only show video track after user has joined a room
     let showLocalTrack = this.state.localMediaAvailable ? (
       <div id="local-media" className="flex-item">
-        <div ref="localMedia" />
+        <div ref={this.localMedia} />
       </div>
     ) : null;
+
+    const toggleMute = this.state.muteVideo ? (
+        <Button id="unmute-video" variant="raised" onClick={this.enableVideo}>Enable Video</Button>
+    ) : showLocalTrack;
 
     // Hide 'Join Room' button if user has already joined a room.
     let hangupButton = this.state.hasJoinedRoom ? (
@@ -154,7 +184,7 @@ export default class VideoComponent extends Component {
         color="secondary"
         variant="raised"
         id="hang-up-button"
-        onClick={() => this.props.hangup()}
+        onClick={this.props.hangup}
       >
         Hang Up
       </Button>
@@ -162,9 +192,10 @@ export default class VideoComponent extends Component {
 
     return (
       <div className="flex-container">
-        {showLocalTrack}
+        {toggleMute}
         <div className="flex-item">{hangupButton}</div>
-        <div className="flex-item" ref="remoteMedia" id="remote-media" />
+        <div className="flex-item" ref={this.remoteMedia} id="remote-media">
+        </div>
       </div>
     );
   }
@@ -172,5 +203,6 @@ export default class VideoComponent extends Component {
 
 VideoComponent.defaultProps = {
   callAnswered: () => {},
-  hangup: () => {}
+  hangup: () => {},
+  muteVideo: false
 };
