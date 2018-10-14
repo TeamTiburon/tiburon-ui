@@ -27,8 +27,12 @@ class Navbar extends Component {
     }
 
     handleClick() {
-        if (!['/', '/register'].includes(window.location.pathname)) {
-            window.location.pathname = '/dashboard';
+        if (!['/', '/register', '/dashboard', '/volunteerDashBoard'].includes(window.location.pathname)) {
+            if (localStorage.getItem('volunteer')) {
+                window.location.pathname = '/volunteerDashBoard';
+            } else {
+                window.location.pathname = '/dashboard';
+            }
         }
     }
 
