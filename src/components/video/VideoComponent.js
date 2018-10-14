@@ -194,6 +194,8 @@ class VideoComponent extends Component {
     room.on("participantDisconnected", participant => {
       console.log("Participant '" + participant.identity + "' left the room");
       this.detachParticipantTracks(participant);
+
+      this.props.hangup();
     });
 
     room.on("disconnected", () => {
