@@ -23,7 +23,7 @@ export const connection = (function() {
             history.push({
                 pathname: '/incomingCall',
                 state: {
-                  roomname: update.roomName,
+                  roomName: update.roomName,
                   userName: update.userName
                 }
             });
