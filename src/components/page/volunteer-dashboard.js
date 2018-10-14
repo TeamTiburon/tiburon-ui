@@ -117,13 +117,13 @@ class VolunteerDashboard extends Component {
                         <h3>{t('languages')}</h3>
 
                         <ul>
-                            {volunteer.languages.map((language, i) => <li key={i}>{t(language)}</li>)}
+                            {volunteer.languages.map((language) => <li key={language}>{t(language)}</li>)}
                         </ul>
 
                         <h3>{t('knowledge_areas')}</h3>
 
                         <ul>
-                            {volunteer.knowledge.map((knowledge, i) => <li key={i}>{t(knowledge)}</li>)}
+                            {volunteer.knowledge.map((knowledge) => <li key={knowledge}>{t(knowledge)}</li>)}
                         </ul>
                     </div>
                 </div>
