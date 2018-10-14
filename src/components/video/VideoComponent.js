@@ -17,6 +17,10 @@ export default class VideoComponent extends Component {
     };
     this.joinRoom = this.joinRoom.bind(this);
     this.roomJoined = this.roomJoined.bind(this);
+    this.attachTracks = this.attachTracks.bind(this);
+    this.attachParticipantTracks = this.attachParticipantTracks.bind(this);
+    this.detachTracks = this.detachTracks.bind(this);
+    this.detachParticipantTracks = this.detachParticipantTracks.bind(this);
   }
 
   componentDidMount() {
