@@ -100,6 +100,10 @@ class IncomingCall extends Component {
         console.log("answer")
     }
 
+    hangup() {
+        this.props.history.goBack();
+    }
+
 
     render() {
         const languages = [
@@ -145,6 +149,8 @@ class IncomingCall extends Component {
                 <div>
                     <VideoComponent
                         {...this.state}
+                        callAnswered={ this.answer }
+                        hangup={ this.hangup }
                         />
                 </div>
             );

@@ -1,0 +1,20 @@
+#remote-media video {
+  width: 100vw;
+  object-fit: cover;
+  object-position: center;
+}
+
+#local-media video {
+  z-index: 100;
+  position: absolute;
+  bottom: 10vh;
+  right: 10vw;
+  width: 20vw;
+}
+
+#hang-up-button {
+  z-index: 100;
+  position: absolute;
+  bottom: 10vh;
+  left: 10vw;
+}
