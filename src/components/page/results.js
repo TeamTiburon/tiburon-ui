@@ -38,6 +38,10 @@ class Results extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            onlineUsers: [],
+            onlineLoaded: false
+        };
         this.parseQuery(queryString.parse(this.props.location.search));
         this.goBack = this.goBack.bind(this);
     }
@@ -69,11 +73,24 @@ class Results extends Component {
         localStorage.setItem('searchHelp', JSON.stringify(this.helpWith));
         localStorage.setItem('searchLanguage', this.language);
 
-        fetch(`http://35.184.88.156:8080/online`, {
+        this.fetchOnline();
+    }
+
+    fetchOnline() {
+        const onlineUsers = [];
+
+        fetch(`https://backend.doc.money/online`, {
             method: 'GET'
         }).then((response) => response.json())
         .then((data) => {
-            console.log(data);
+            for(const user of data.users) {
+                if(user.status === 'online') {
+                    onlineUsers.push(parseInt(user.user));
+                }
+            }
+
+            this.setState({ onlineUsers: onlineUsers });
+            this.setState({ onlineLoaded: true });
         });
     }
 
@@ -118,6 +135,10 @@ class Results extends Component {
             );
         }
 
+        if(!this.state.onlineLoaded) {
+            return (<div></div>);
+        }
+
         return (
             <div className={classes.root}>
                 <div className={classes.header}>
@@ -128,7 +149,7 @@ class Results extends Component {
                 </div>
 
                 <div className={classes.cardContainer}>
-                    {sortedVolunteers.map((volunteer, i) => <VolunteerCard key={i} volunteer={volunteer}/>)}
+                    {sortedVolunteers.map((volunteer, i) => <VolunteerCard key={i} volunteer={volunteer} online={this.state.onlineUsers.indexOf(volunteer.volunteer_id) != -1}/>)}
                 </div>
             </div>
         );
