@@ -7,21 +7,21 @@
 #local-media video {
   z-index: 100;
   position: absolute;
-  bottom: 10vh;
-  right: 10vw;
+  bottom: 7vh;
+  right: 7vw;
   width: 20vw;
 }
 
 #unmute-video {
   z-index: 100;
   position: absolute;
-  bottom: 10vh;
-  right: 10vw;
+  bottom: 7vh;
+  right: 7vw;
 }
 
 #hang-up-button {
   z-index: 100;
   position: absolute;
-  bottom: 10vh;
-  left: 10vw;
+  bottom: 7vh;
+  left: 7vw;
 }
