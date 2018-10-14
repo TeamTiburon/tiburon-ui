@@ -4,6 +4,15 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'build']
 artifacts:
-  objects:
-    location: 'gs://tiburon.doc.money'
-    paths: ['build/**.json','build/**.png','build/**.html','build/**.js','build/static/css/**.css','build/static/js/**.js','build/static/media/**.svg','build/img/**.jpg']
+  - objects:
+    location: 'gs://tiburon.doc.money/build'
+    paths: ['build/**.json','build/**.png','build/**.html','build/**.js']
+  - objects:
+    location: 'gs://tiburon.doc.money/build/static/css'
+    paths: ['build/static/css/**.css','build/static/js/**.js','build/static/media/**.svg','build/img/**.jpg']
+  - objects:
+    location: 'gs://tiburon.doc.money/build/static/media'
+    paths: ['build/static/media/**.svg']
+  - objects:
+    location: 'gs://tiburon.doc.money/build/img'
+    paths: ['build/img/**.jpg']
