@@ -126,7 +126,7 @@ class IncomingCall extends Component {
                 <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
 
                 <h4 style={{ color: "#fff" }}>
-                    {this.userName} is calling
+                    {this.state.userName} is calling
                     </h4>
                 <div>
                         <Button
