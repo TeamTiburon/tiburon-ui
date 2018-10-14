@@ -13,6 +13,7 @@ import Navbar from './components/navbar/navbar'
 import SendMessage from './components/page/send-message';
 import OutgoingCall from './components/page/outgoing-call';
 import VolunteerDashboard from './components/page/volunteer-dashboard';
+import VolunteerLogin from './components/page/volunteer-login';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
               <Route path='/outgoingCall' render={(props) => <OutgoingCall {...props} />}/>
               <Route path='/profile/:id' render={(props) => <Profile {...props} />}/>
               <Route path='/volunteerDashboard' component={ VolunteerDashboard }/>
+              <Route path='/volunteerLogin' component={ VolunteerLogin }/>
             </Switch>
         </div>
       </BrowserRouter>

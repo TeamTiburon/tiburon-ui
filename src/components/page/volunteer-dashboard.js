@@ -18,10 +18,22 @@ class VolunteerDashboard extends Component {
 
     constructor(props) {
         super(props);
+        this.validate();
     }
 
     componentDidMount() {
-        connection.subscribe(this.props.history);
+    }
+
+    validate() {
+        const volunteerStr = localStorage.getItem('volunteer');
+
+        if(!volunteerStr) {
+            this.props.history.push('/volunteerLogin');
+            return;
+        }
+
+        const volunteer = JSON.parse(volunteerStr);
+        connection.subscribe(this.props.history, volunteer);
     }
 
     render() {
