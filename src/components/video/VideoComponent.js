@@ -24,7 +24,10 @@ export default class VideoComponent extends Component {
   joinRoom() {
     console.log("Joining room '" + this.props.roomName + "'...");
     let connectOptions = {
-      name: this.props.roomName
+      name: this.props.roomName,
+      video: {
+          aspectRatio: 1
+      }
     };
 
     if (this.state.previewTracks) {

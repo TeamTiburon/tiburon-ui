@@ -97,7 +97,7 @@ class Profile extends Component {
         } = this.state;
 
         this.setState({ calling: true });
-        fetch(`http://35.184.88.156:8080/token`, {
+        return fetch(`https://backend.doc.money/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ class Profile extends Component {
         })
         .then((response) => response.json())
         .then(({ identity, token }) => {
-            return fetch(`http://35.184.88.156:8080/call/${ volunteerId }`, {
+            return fetch(`https://backend.doc.money/call/${ volunteerId }`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
