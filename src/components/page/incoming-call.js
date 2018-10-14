@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import queryString from 'query-string';
 import VideoComponent from '../video/VideoComponent';
+import Sound from 'react-sound';
 
 import { withNamespaces, Trans } from "react-i18next";
 
@@ -116,6 +117,12 @@ class IncomingCall extends Component {
             return (<div className={classes.loadingSpinner}>
 
                 <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
+
+                <Sound
+                    url="/audio/old-phone-ringing.wav"
+                    playStatus={Sound.status.PLAYING}
+                    loop
+                    />
 
                 <h4 style={{ color: "#fff" }}>
                 <Trans i18nKey='user_is_calling' userName={userName}>
