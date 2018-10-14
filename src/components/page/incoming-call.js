@@ -74,7 +74,7 @@ class IncomingCall extends Component {
     componentDidMount() {
         const volunteer = JSON.parse(localStorage.getItem('volunteer'));
 
-        fetch(`https://doc.backend.money/token`, {
+        fetch(`https://backend.doc.money/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -98,6 +98,10 @@ class IncomingCall extends Component {
 
     answer(event) {
         console.log("answer")
+    }
+
+    hangup() {
+        this.props.history.goBack();
     }
 
 
@@ -145,6 +149,8 @@ class IncomingCall extends Component {
                 <div>
                     <VideoComponent
                         {...this.state}
+                        callAnswered={ this.answer }
+                        hangup={ this.hangup }
                         />
                 </div>
             );
