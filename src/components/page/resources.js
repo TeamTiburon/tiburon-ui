@@ -77,38 +77,9 @@ class LocalInformation extends Component {
         const { classes } = this.props;
         const vm = this;
 
-        let sortedVolunteers = resources.filter(volunteer => {
-            let validLang = (volunteer.languages.indexOf(this.language) !== -1);
-            let validArea = true;
-
-            for(const area of this.helpWith) {
-                if(volunteer.knowledge.indexOf(area) === -1) {
-                    validArea = false;
-                    break;
-                }
-            }
-
-            return validLang && validArea;
-        });
-
-        sortedVolunteers = sortedVolunteers.sort((a, b) => {
+        const sortedResources = resources.sort((a, b) => {
             return b.rating - a.rating;
         });
-
-        if(sortedVolunteers.length === 0) {
-            return (
-                <div className={classes.root}>
-                    <div className={classes.header} style={{alignItems: 'center'}}>
-                        <IconButton onClick={this.goBack}>
-                            <ArrowBack className={classes.icon}/>
-                        </IconButton>
-                        <h1 className={classes.title}>Go Back</h1>
-                    </div>
-
-                    <h1 className={classes.notFound}>No resources were found nearby. Consider using Live Assistance instead.</h1>
-                </div>
-            );
-        }
 
         return (
             <div className={classes.root}>
@@ -120,7 +91,7 @@ class LocalInformation extends Component {
                 </div>
 
                 <div className={classes.cardContainer}>
-                    {sortedVolunteers.map((volunteer, i) => <ResourceCard key={i} volunteer={volunteer}/>)}
+                    {sortedResources.map((volunteer, i) => <ResourceCard key={i} volunteer={volunteer}/>)}
                 </div>
             </div>
         );
