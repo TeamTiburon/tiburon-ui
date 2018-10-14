@@ -9,8 +9,9 @@ export const client = new Nes.Client('wss://backend.doc.money');
 
 client.connect().then(() => {
     ReactDOM.render(<App />, document.getElementById('root'));
-    serviceWorker.register();
 });
+
+serviceWorker.register();
 
 export const connection = (function() {
     let subscription;
