@@ -56,7 +56,7 @@ class Results extends Component {
             if(localStorage.getItem('searchHelp')) {
                 this.helpWith = JSON.parse(localStorage.getItem('searchHelp'));
             } else {
-                this.helpWith = [ 'Community' ];
+                this.helpWith = [];
             }
         }
 
@@ -106,10 +106,12 @@ class Results extends Component {
             let validLang = (volunteer.languages.indexOf(this.language) !== -1);
             let validArea = true;
 
-            for(const area of this.helpWith) {
-                if(volunteer.knowledge.indexOf(area) === -1) {
-                    validArea = false;
-                    break;
+            if(this.helpWith && this.helpWith.length !== 0) {
+                for(const area of this.helpWith) {
+                    if(volunteer.knowledge.indexOf(area) === -1) {
+                        validArea = false;
+                        break;
+                    }
                 }
             }
 

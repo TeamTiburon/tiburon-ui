@@ -35,9 +35,9 @@ const styles = theme => ({
         padding: '0 16px'
     },
     bigAvatar: {
-        margin: 10,
-        width: 100,
-        height: 100,
+        width: 80,
+        height: 80,
+        border: '1px solid white'
     },
     volunteerBasic: {
         marginTop: 16
@@ -67,6 +67,16 @@ const styles = theme => ({
     actionIcon: {
         width: 48,
         height: 48
+    },
+    online: {
+        margin: 10,
+        border: '8px solid green',
+        borderRadius: '100%'
+    },
+    offline: {
+        margin: 10,
+        border: '8px solid gray',
+        borderRadius: '100%'
     }
 });
 
@@ -81,7 +91,8 @@ class Profile extends Component {
         this.state = {
             calling: false,
             volunteerId,
-            volunteer
+            volunteer,
+            online: false
         };
         this.goBack = this.goBack.bind(this);
 
@@ -89,6 +100,18 @@ class Profile extends Component {
         this.intiateLiveTextChat = this.intiateLiveTextChat.bind(this);
     }
 
+    checkOnlineStatus(volunteer) {
+        fetch(`https://backend.doc.money/online`, {
+            method: 'GET'
+        }).then((response) => response.json())
+        .then((data) => {
+            for(const user of data.users) {
+                if(user.status === 'online' && user.user == volunteer.volunteer_id) {
+                    this.setState({ online: true });
+                }
+            }
+        });
+    }
 
     initiateLiveVideoChat() {
         let userName = 'Unknown';
@@ -147,8 +170,8 @@ class Profile extends Component {
 
     }
 
-    onComponentDidMount() {
-
+    componentDidMount() {
+        this.checkOnlineStatus(this.state.volunteer);
     }
 
     handleNavigation(event) {
@@ -184,11 +207,13 @@ class Profile extends Component {
                 </div>
                 <div className={classes.root}>
                     <div className={classes.volunteerProfile}>
-                        <Avatar
-                            alt={volunteer.name}
-                            src={volunteer.profile_picture}
-                            className={classes.bigAvatar}
-                        />
+                        <div className={this.state.online ? classes.online : classes.offline}>
+                            <Avatar
+                                alt={volunteer.name}
+                                src={volunteer.profile_picture}
+                                className={classes.bigAvatar}
+                            />
+                        </div>
                         <div className={classes.volunteerBasic}>
                             {stars}
                             {emptyStars}

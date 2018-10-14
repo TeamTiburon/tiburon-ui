@@ -62,6 +62,8 @@ class Search extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
+        localStorage.setItem('searchHelp', null);
+        localStorage.setItem('searchLanguage', null);
     }
 
     onComponentDidMount() {
