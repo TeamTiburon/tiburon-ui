@@ -52,7 +52,8 @@ class VideoComponent extends Component {
       hasJoinedRoom: false,
       activeRoom: "", // Track the current active room
       muteVideo: props.muteVideo,
-      answered: false
+      answered: false,
+      sizes: [0,0]
     };
     this.joinRoom = this.joinRoom.bind(this);
     this.roomJoined = this.roomJoined.bind(this);
@@ -100,6 +101,8 @@ class VideoComponent extends Component {
           aspectRatio: this.windowSizer.current.clientWidth / this.windowSizer.current.clientHeight
       }
     };
+
+    this.setState({ sizes: [this.windowSizer.current.clientWidth, this.windowSizer.current.clientHeight]})
 
     if (this.state.previewTracks) {
       connectOptions.tracks = this.state.previewTracks;
@@ -229,7 +232,7 @@ class VideoComponent extends Component {
     ) : showLocalTrack;
 
     return (
-        <div className="flex-container">
+          <div className="flex-container">
             <div className={ classes.windowSizer } ref={this.windowSizer }/>
             {toggleMute}
             <div className="flex-item">
@@ -240,7 +243,7 @@ class VideoComponent extends Component {
                     id="hang-up-button"
                     disabled={!this.state.activeRoom}
                     onClick={this.props.hangup}
-                >{t('hang_up')}</Button>
+                >{t('hang_up')}, {this.state.sizes[0]}, {this.state.sizes[1]}</Button>
             </div>
             <div className="flex-item" ref={this.remoteMedia} id="remote-media">
                 { !this.state.answered &&
