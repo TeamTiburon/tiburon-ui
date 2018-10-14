@@ -68,6 +68,13 @@ class Results extends Component {
 
         localStorage.setItem('searchHelp', JSON.stringify(this.helpWith));
         localStorage.setItem('searchLanguage', this.language);
+
+        fetch(`http://35.184.88.156:8080/online`, {
+            method: 'GET'
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
     }
 
     goBack(event) {
