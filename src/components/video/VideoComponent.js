@@ -3,6 +3,8 @@ import Video from "twilio-video";
 import Button from "@material-ui/core/Button";
 import { Card, CardHeader, CardText } from "@material-ui/core/Card";
 
+import './VideoComponent.css';
+
 export default class VideoComponent extends Component {
   constructor(props) {
     super();
@@ -26,7 +28,7 @@ export default class VideoComponent extends Component {
     let connectOptions = {
       name: this.props.roomName,
       video: {
-          aspectRatio: 1
+          aspectRatio: window.innerWidth / window.innerHeight
       }
     };
 
@@ -132,7 +134,7 @@ export default class VideoComponent extends Component {
   render() {
     // Only show video track after user has joined a room
     let showLocalTrack = this.state.localMediaAvailable ? (
-      <div className="flex-item">
+      <div id="local-media" className="flex-item">
         <div ref="localMedia" />
       </div>
     ) : null;
@@ -143,6 +145,7 @@ export default class VideoComponent extends Component {
         label="Hang Up"
         color="secondary"
         variant="raised"
+        id="hang-up-button"
         onClick={() => alert("Hang Up")}
       >
         Hang Up
