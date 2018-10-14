@@ -64,11 +64,13 @@ class IncomingCall extends Component {
         this.state = {
             ...this.props.location.state,
             token: null,
-            identity: null
+            identity: null,
+            answered: false
         };
 
         this.sendMessageToUser = this.sendMessageToUser.bind(this);
         this.answer = this.answer.bind(this);
+        this.hangup = this.hangup.bind(this);
     }
 
     componentDidMount() {
@@ -97,7 +99,7 @@ class IncomingCall extends Component {
     }
 
     answer(event) {
-        console.log("answer")
+        this.setState({ answered: true });
     }
 
     hangup() {
@@ -118,7 +120,7 @@ class IncomingCall extends Component {
         ];
         const { classes } = this.props;
 
-        if (!this.state.token) {
+        if (!this.state.answered) {
             return (<div className={classes.loadingSpinner}>
 
                 <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
@@ -131,6 +133,7 @@ class IncomingCall extends Component {
                             variant="contained"
                             color="primary"
                             onClick={this.answer}
+                            disabled={!this.state.token}
                             className={classes.button}>
                             Answer
                                     </Button>
@@ -149,7 +152,6 @@ class IncomingCall extends Component {
                 <div>
                     <VideoComponent
                         {...this.state}
-                        callAnswered={ this.answer }
                         hangup={ this.hangup }
                         />
                 </div>

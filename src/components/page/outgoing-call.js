@@ -115,6 +115,7 @@ class OutgoingCall extends Component {
                     {...this.props.location.state}
                     answer={ this.answer }
                     hangup={ this.hangup }
+                    muteVideo
                     />
             </div>
         )
