@@ -9,7 +9,7 @@ export const client = new Nes.Client('ws://35.184.88.156:8080');
 
 client.connect().then(() => {
     ReactDOM.render(<App />, document.getElementById('root'));
-    serviceWorker.unregister();
+    serviceWorker.register();
 });
 
 export const connection = (function() {

@@ -28,12 +28,10 @@ class Navbar extends Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        {/*}<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
-                        </IconButton>*/}
-                        <Typography variant="h5" color="inherit" className={classes.grow}>
-                            Tiburon
-                        </Typography>
+                        </IconButton> */}
+                        <img alt="Tiburon" src="./img/tiburonTitle.png" style={{margin: "auto"}}/>
                     </Toolbar>
                 </AppBar>
             </div>

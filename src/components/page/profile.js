@@ -171,9 +171,6 @@ class Profile extends Component {
         return (
             <div>
                 <div className={classes.header}>
-                    <IconButton onClick={this.submit}>
-                        <ArrowBack className={classes.icon} />
-                    </IconButton>
                     <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>

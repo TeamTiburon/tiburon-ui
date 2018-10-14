@@ -74,6 +74,20 @@ class IncomingCall extends Component {
     parseQuery(values) {
         this.roomName = values.roomName;
         this.userName = values.userName;
+
+        fetch(`http://35.184.88.156:8080/token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: '6'
+            })
+        }).then((response) => response.json())
+        .then((data) => {
+            this.token = data.token;
+            this.identity = data.identity;
+        });
     }
 
     componentDidMount() {
@@ -82,7 +96,7 @@ class IncomingCall extends Component {
 
     sendMessageToUser(event) {
         console.log("send message")
-         this.props.history.push("/sendMessage")
+        this.props.history.push("/sendMessage")
     }
 
     answer(event) {
