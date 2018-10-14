@@ -1,4 +1,9 @@
 steps:
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['app', 'deploy', '--quiet', '--stop-previous-version']
-timeout: '1600s'
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'build']
+artifacts:
+    objects:
+        location: 'gs://tiburon-ui/'
+        paths: ['build','public','data']
