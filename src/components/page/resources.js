@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import ResourceCard from '../resource-card/resource-card';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import { withNamespaces, Trans } from "react-i18next";
 
 const resources = require('../../data/resources.json');
 
@@ -74,7 +75,7 @@ class LocalInformation extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, t } = this.props;
         const vm = this;
 
         const sortedResources = resources.sort((a, b) => {
@@ -87,7 +88,7 @@ class LocalInformation extends Component {
                     <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
-                    <h1 className={classes.title}>Resources near you:</h1>
+                    <h1 className={classes.title}>{t('resources')}:</h1>
                 </div>
 
                 <div className={classes.cardContainer}>
@@ -98,4 +99,4 @@ class LocalInformation extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(LocalInformation));
+export default withNamespaces()(withStyles(styles)(withRouter(LocalInformation)));

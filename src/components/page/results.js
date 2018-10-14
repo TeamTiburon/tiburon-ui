@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import VolunteerCard from '../volunteer-card/volunteer-card';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import { withNamespaces, Trans } from "react-i18next";
 
 const volunteers = require('../../data/volunteers.json');
 
@@ -99,7 +100,7 @@ class Results extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, t } = this.props;
         const vm = this;
 
         let sortedVolunteers = volunteers.filter(volunteer => {
@@ -129,10 +130,10 @@ class Results extends Component {
                         <IconButton onClick={this.goBack}>
                             <ArrowBack className={classes.icon}/>
                         </IconButton>
-                        <h1 className={classes.title}>Go Back</h1>
+                        <h1 className={classes.title}>{t('go_back')}</h1>
                     </div>
 
-                    <h1 className={classes.notFound}>No volunteers were found using your search criteria.</h1>
+                    <h1 className={classes.notFound}>{t('no_volunteers')}</h1>
                 </div>
             );
         }
@@ -147,7 +148,7 @@ class Results extends Component {
                     <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
-                    <h1 className={classes.title}>We found the following Volunteers who can help:</h1>
+                    <h1 className={classes.title}>{t('volunteers')}:</h1>
                 </div>
 
                 <div className={classes.cardContainer}>
@@ -158,4 +159,4 @@ class Results extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Results));
+export default withNamespaces()(withStyles(styles)(withRouter(Results)));

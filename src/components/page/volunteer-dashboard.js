@@ -18,6 +18,8 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { connection } from '../../index';
 
+import { withNamespaces } from "react-i18next";
+
 const styles = theme => ({
     volunteerName: {
         fontSize: 24,
@@ -77,7 +79,7 @@ class VolunteerDashboard extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, t } = this.props;
         const volunteer = this.volunteer;
 
         var stars = [];
@@ -112,16 +114,16 @@ class VolunteerDashboard extends Component {
                     </div>
 
                     <div className={classes.volunteerDetails}>
-                        <h3>Languages</h3>
+                        <h3>{t('languages')}</h3>
 
                         <ul>
-                            {volunteer.languages.map((language, i) => <li key={i}>{language}</li>)}
+                            {volunteer.languages.map((language, i) => <li key={i}>{t(language)}</li>)}
                         </ul>
 
-                        <h3>Knowledge Areas</h3>
+                        <h3>{t('knowledge_areas')}</h3>
 
                         <ul>
-                            {volunteer.knowledge.map((knowledge, i) => <li key={i}>{knowledge}</li>)}
+                            {volunteer.knowledge.map((knowledge, i) => <li key={i}>{t(knowledge)}</li>)}
                         </ul>
                     </div>
                 </div>
@@ -130,4 +132,4 @@ class VolunteerDashboard extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(VolunteerDashboard));
+export default withNamespaces()(withStyles(styles)(withRouter(VolunteerDashboard)));

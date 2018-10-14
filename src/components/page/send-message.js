@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+import { withNamespaces, Trans } from "react-i18next";
 
 const styles = theme => ({
     root: {
@@ -90,21 +91,16 @@ class SendMessage extends Component {
 
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
-        const { classes } = this.props;
+        const { classes, t } = this.props;
+
+        const { name } = this.state.profile;
 
         return (
             <div>
-                <h4 className={classes.subHeader}> Message to {this.state.profile.name}</h4>
+                <h4 className={classes.subHeader}>
+                <Trans i18nKey='message_to_name' name={name}>
+                    Message to {{name}}
+                </Trans></h4>
 
                 <form className={classes.container} noValidate autoComplete="off">
 
@@ -115,7 +111,7 @@ class SendMessage extends Component {
                         <Grid item className={classes.gridy}>
                             <TextField
                                 id="message"
-                                label="Enter your message here...."
+                                label={t('enter_message')}
                                 placeholder="Placeholder"
                                 multiline
                                 margin="normal"
@@ -132,7 +128,7 @@ class SendMessage extends Component {
                                 color="primary"
                                 onClick={this.submit}
                                 className={classes.button}>
-                                Send Message
+                                {t('send_message')}
                                 </Button>
                         </Grid>
                     </div>
@@ -142,4 +138,4 @@ class SendMessage extends Component {
     }
 }
 
-export default withStyles(styles)(SendMessage);
+export default withNamespaces()(withStyles(styles)(SendMessage));

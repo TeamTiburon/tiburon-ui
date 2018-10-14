@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
+import { withNamespaces, Trans } from "react-i18next";
 
 const styles = theme => ({
     root: {
@@ -34,22 +35,16 @@ const styles = theme => ({
 });
 
 const topics = [
-    'Immigration Law',
-    'Community',
-    'Translations',
-    'Medical Services',
-    'Visa Process'
+    'imm_law',
+    'community',
+    'translations',
+    'medical_services',
+    'visa_process'
 ];
 
 const languages = [
-    {
-        value: 'ENG',
-        label: 'English',
-    },
-    {
-        value: 'ES',
-        label: 'Español',
-    }
+    'lang_en',
+    'lang_es'
 ];
 
 class Search extends Component {
@@ -82,16 +77,16 @@ class Search extends Component {
     }
 
     render() {
-        const { classes, theme } = this.props;
+        const { classes, t } = this.props;
 
         return (
             <div className={classes.root}>
-                <h1 className={classes.header}>Live Assistance</h1>
+                <h1 className={classes.header}>{t('live_assist')}</h1>
 
                 <Grid container spacing={24}>
                     <Grid item xs={12} className={classes.gridy}>
                         <FormControl className={classes.flexy}>
-                            <InputLabel htmlFor="helpWith">I need help with...</InputLabel>
+                            <InputLabel htmlFor="helpWith">{t('need_help')}</InputLabel>
                             <Select
                                 multiple
                                 value={this.state.helpWith}
@@ -101,7 +96,7 @@ class Search extends Component {
                                     <MenuItem
                                         key={topic}
                                         value={topic}>
-                                        {topic}
+                                        {t(topic)}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -110,16 +105,16 @@ class Search extends Component {
 
                     <Grid item xs={12} className={classes.gridy}>
                         <FormControl className={classes.flexy}>
-                            <InputLabel htmlFor="language">In the language...</InputLabel>
+                            <InputLabel htmlFor="language">{t('in_language')}</InputLabel>
                             <Select
                                 value={this.state.language}
                                 onChange={this.handleChange}
                                 input={<Input id="language" name="language" />}>
                                 {languages.map(language => (
                                     <MenuItem
-                                        key={language.label}
-                                        value={language.label}>
-                                        {language.label}
+                                        key={language}
+                                        value={language}>
+                                        {t(language)}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -128,7 +123,7 @@ class Search extends Component {
 
                     <Grid item xs={12} className={classes.gridy}>
                         <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                            Find Help
+                            {t('find_help')}
                         </Button>
                     </Grid>
                 </Grid>
@@ -137,4 +132,4 @@ class Search extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Search));
+export default withNamespaces()(withStyles(styles)(withRouter(Search)));

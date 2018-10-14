@@ -55,7 +55,6 @@ const styles = theme => ({
     }
 });
 
-
 class OutgoingCall extends Component {
 
     constructor(props) {
@@ -97,18 +96,6 @@ class OutgoingCall extends Component {
 
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
-        const { classes } = this.props;
-
         return (
             <div>
                 <VideoComponent
@@ -122,5 +109,3 @@ class OutgoingCall extends Component {
     }
 }
 export default withStyles(styles)(withRouter(OutgoingCall));
-
-//export default withStyles(styles)(withRouter(Search));

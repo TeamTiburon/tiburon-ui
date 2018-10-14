@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom";
+import { withNamespaces, Trans } from "react-i18next";
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -31,6 +32,11 @@ const styles = theme => ({
     }
 });
 
+const languages = [
+    'lang_en',
+    'lang_es'
+];
+
 class Register extends Component {
 
     constructor(props) {
@@ -58,22 +64,12 @@ class Register extends Component {
     }
 
     render() {
-        const languages = [
-            {
-                value: 'ENG',
-                label: 'English',
-            },
-            {
-                value: 'ES',
-                label: 'Español',
-            }
-        ];
-        const { classes } = this.props;
+        const { classes, t } = this.props;
 
         return (
 
             <div>
-                <h1 className={classes.header}>Sign Up</h1>
+                <h1 className={classes.header}>{t('sign_up')}</h1>
 
                 <form noValidate autoComplete="off">
 
@@ -82,7 +78,7 @@ class Register extends Component {
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="email"
-                                    label="Email"
+                                    label={t('email')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="email"
@@ -92,7 +88,7 @@ class Register extends Component {
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="display-name"
-                                    label="Display Name"
+                                    label={t('display_name')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="displayName"
@@ -103,7 +99,7 @@ class Register extends Component {
                                 <TextField
                                     id="standard-select-language"
                                     select
-                                    label="Select"
+                                    label={t('select')}
                                     className={classes.textField}
                                     value={this.state.language}
                                     onChange={this.handleChange}
@@ -112,22 +108,22 @@ class Register extends Component {
                                             className: classes.menu,
                                         },
                                     }}
-                                    helperText="Please select your preferred language"
+                                    helperText={t('select_language')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="language"
 
                                 >
                                     {languages.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
+                                        <MenuItem key={option} value={option}>
+                                            {t(option)}
                                         </MenuItem>
                                     ))}
                                 </TextField>
                             </Grid>
                             <Grid item xs={12} className={classes.gridy}>
                                 <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                                    Submit
+                                    {t('submit')}
                                 </Button>
                             </Grid>
                         </Grid>
@@ -139,4 +135,4 @@ class Register extends Component {
     }
 }
 
-export default withStyles(styles)(withRouter(Register));
+export default withNamespaces()(withStyles(styles)(withRouter(Register)));

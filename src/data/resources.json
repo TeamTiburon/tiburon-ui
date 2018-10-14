@@ -8,8 +8,8 @@
         "location": "3672B Arsenal St., St. Louis, MO 63116",
         "phone": "314-771-1104",
         "url": "http://www.irwp.net/",
-        "languages": [ "English", "Español", "French" ],
-        "knowledge": [ "Medical Services", "Immigration Law", "Translations" ]
+        "languages": [ "lang_en", "lang_es", "lang_fr" ],
+        "knowledge": [ "medical_services", "imm_law", "translations" ]
     },
     {
         "volunteer_id": 6,
@@ -20,7 +20,7 @@
         "location": "3401 Arsenal St., St. Louis, MO",
         "phone": "314-773-9090",
         "url": "https://www.iistl.org",
-        "languages": [ "English", "Español" ],
-        "knowledge": [ "Immigration Law", "Visa Process", "Translations" ]
+        "languages": [ "lang_en", "lang_es" ],
+        "knowledge": [ "imm_law", "visa_process", "translations" ]
     }
 ]

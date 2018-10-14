@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Splash from './components/page/splash';
 import Register from './components/page/register';
 import Dashboard from './components/page/dashboard';
@@ -15,12 +13,13 @@ import OutgoingCall from './components/page/outgoing-call';
 import VolunteerDashboard from './components/page/volunteer-dashboard';
 import VolunteerLogin from './components/page/volunteer-login';
 import LocalInformation from './components/page/resources';
+import './App.css';
+
 
 class App extends Component {
   render() {
     return (
       <div>
-
       <BrowserRouter>
 
         <div>
