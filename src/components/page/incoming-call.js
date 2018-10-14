@@ -144,7 +144,7 @@ class IncomingCall extends Component {
             return (
                 <div>
                     <VideoComponent
-                        {...this.props.location.state}
+                        {...this.state}
                         />
                 </div>
             );
