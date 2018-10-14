@@ -91,6 +91,12 @@ class Profile extends Component {
 
 
     initiateLiveVideoChat() {
+        let userName = 'Unknown';
+
+        if(localStorage.getItem('user')) {
+            userName = JSON.parse(localStorage.getItem('user')).displayName;
+        }
+
         const {
             volunteerId,
             volunteer
@@ -103,7 +109,7 @@ class Profile extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: 'iamuser'
+                user: userName
             })
         })
         .then((response) => response.json())
@@ -114,7 +120,7 @@ class Profile extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    userName: 'I am who I am'
+                    userName: userName
                 })
             })
             .then((response) => response.json())
