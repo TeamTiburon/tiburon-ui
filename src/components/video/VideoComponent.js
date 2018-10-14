@@ -1,11 +1,33 @@
 import React, { Component } from "react";
+import { withStyles } from '@material-ui/core/styles';
 import Video from "twilio-video";
 import Button from "@material-ui/core/Button";
 import { Card, CardHeader, CardText } from "@material-ui/core/Card";
+import Phone from '@material-ui/icons/Phone';
 
 import './VideoComponent.css';
 
-export default class VideoComponent extends Component {
+const styles = theme => ({
+    loadingSpinner: {
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: 'column',
+
+        height: "100%",
+        width: "100%",
+        background: "rgba(0, 0, 0, 0.75)",
+        zIndex: 8,
+    }
+});
+
+class VideoComponent extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -14,7 +36,8 @@ export default class VideoComponent extends Component {
       localMediaAvailable: false,
       hasJoinedRoom: false,
       activeRoom: "", // Track the current active room
-      muteVideo: props.muteVideo
+      muteVideo: props.muteVideo,
+      answered: false
     };
     this.joinRoom = this.joinRoom.bind(this);
     this.roomJoined = this.roomJoined.bind(this);
@@ -33,7 +56,9 @@ export default class VideoComponent extends Component {
   }
 
   componentWillUnmount() {
-    this.state.activeRoom.disconnect();
+    if (this.state.activeRoom) {
+        this.state.activeRoom.disconnect();
+    }
   }
 
   enableVideo() {
@@ -120,6 +145,10 @@ export default class VideoComponent extends Component {
         }
     }
 
+    if (room.participants.length) {
+        this.setState({ answered: true })
+    }
+
     // Attach the Tracks of the room's participants.
     room.participants.forEach(participant => {
       console.log("Already in Room: '" + participant.identity + "'");
@@ -129,7 +158,8 @@ export default class VideoComponent extends Component {
 
     // Participant joining room
     room.on("participantConnected", participant => {
-      console.log("Joining: '" + participant.identity + "'");
+        this.setState({ answered: true });
+        console.log("Joining: '" + participant.identity + "'");
     });
 
     // Attach participant’s tracks to DOM when they add a track
@@ -166,6 +196,8 @@ export default class VideoComponent extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     // Only show video track after user has joined a room
     let showLocalTrack = this.state.localMediaAvailable ? (
       <div id="local-media" className="flex-item">
@@ -177,29 +209,35 @@ export default class VideoComponent extends Component {
         <Button id="unmute-video" variant="raised" onClick={this.enableVideo}>Enable Video</Button>
     ) : showLocalTrack;
 
-    // Hide 'Join Room' button if user has already joined a room.
-    let hangupButton = this.state.hasJoinedRoom ? (
-      <Button
-        label="Hang Up"
-        color="secondary"
-        variant="raised"
-        id="hang-up-button"
-        onClick={this.props.hangup}
-      >
-        Hang Up
-      </Button>
-    ) : null;
-
     return (
-      <div className="flex-container">
-        {toggleMute}
-        <div className="flex-item">{hangupButton}</div>
-        <div className="flex-item" ref={this.remoteMedia} id="remote-media">
+        <div className="flex-container">
+            {toggleMute}
+            <div className="flex-item">
+                <Button
+                    label="Hang Up"
+                    color="secondary"
+                    variant="raised"
+                    id="hang-up-button"
+                    disabled={!this.state.activeRoom}
+                    onClick={this.props.hangup}
+                >Hang Up</Button>
+            </div>
+            <div className="flex-item" ref={this.remoteMedia} id="remote-media">
+                { !this.state.answered &&
+                    <div className={classes.loadingSpinner}>
+                        <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
+
+                        <h4 style={{ color: "#fff" }}>
+                            Calling ....
+                        </h4>
+                    </div>
+                }
+            </div>
         </div>
-      </div>
     );
   }
 }
+export default withStyles(styles)(VideoComponent);
 
 VideoComponent.defaultProps = {
   callAnswered: () => {},
