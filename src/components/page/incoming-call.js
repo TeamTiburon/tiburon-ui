@@ -74,7 +74,7 @@ class IncomingCall extends Component {
     componentDidMount() {
         const volunteer = JSON.parse(localStorage.getItem('volunteer'));
 
-        fetch(`https://doc.backend.money/token`, {
+        fetch(`https://backend.doc.money/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
