@@ -119,7 +119,7 @@ class IncomingCall extends Component {
 
                 <h4 style={{ color: "#fff" }}>
                 <Trans i18nKey='user_is_calling' userName={userName}>
-                        {{userName}} is calling
+                        {{userName}}
                     </Trans>
                     </h4>
                 <div>
