@@ -73,15 +73,19 @@ class VideoComponent extends Component {
   }
 
   componentDidMount() {
-    this.joinRoom();
     navigator.mediaDevices.enumerateDevices().then(this.listDevices);
+    this.joinRoom();
   }
 
   componentWillUnmount() {
     if (this.state.activeRoom) {
-      const { localParticipant } = this.state.activeRoom;
-      this.detachParticipantTracks(localParticipant);
-        this.state.activeRoom.disconnect();
+      const { activeRoom } = this.state;
+      try {
+        this.detachParticipantTracks(activeRoom.localParticipant);
+      } catch (e) {
+        console.error(e);
+      }
+      activeRoom.disconnect();
     }
   }
 
@@ -281,7 +285,7 @@ class VideoComponent extends Component {
         <Button id="unmute-video" variant="raised" onClick={this.enableVideo}>{t('enable_video')}</Button>
     ) : showLocalTrack;
 
-    const switchCameraButton = this.state.devices.length > 0 && this.state.answered ?
+    const switchCameraButton = this.state.devices.length > 1 && this.state.answered ?
         ( <Button id="switch-camera" variant="raised" onClick={this.switchCamera}>{t('switch_camera')}</Button> )
         : null;
 
