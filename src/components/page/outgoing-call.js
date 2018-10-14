@@ -70,8 +70,7 @@ class OutgoingCall extends Component {
         this.sendMessageToUser = this.sendMessageToUser.bind(this);
         this.answer = this.answer.bind(this);
         this.cancel = this.cancel.bind(this);
-
-
+        this.hangup = this.hangup.bind(this);
     }
 
     componentDidMount() {
@@ -92,8 +91,8 @@ class OutgoingCall extends Component {
         this.props.history.push("/results")
     }
 
-    callAnswered(event) {
-
+    hangup() {
+        this.props.history.goBack();
     }
 
 
@@ -114,6 +113,8 @@ class OutgoingCall extends Component {
             <div>
                 <VideoComponent
                     {...this.props.location.state}
+                    answer={ this.answer }
+                    hangup={ this.hangup }
                     />
             </div>
         )

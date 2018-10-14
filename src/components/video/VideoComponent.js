@@ -23,6 +23,10 @@ export default class VideoComponent extends Component {
     this.joinRoom();
   }
 
+  componentWillUnmount() {
+    this.state.activeRoom.disconnect();
+  }
+
   joinRoom() {
     console.log("Joining room '" + this.props.roomName + "'...");
     let connectOptions = {
@@ -146,7 +150,7 @@ export default class VideoComponent extends Component {
         color="secondary"
         variant="raised"
         id="hang-up-button"
-        onClick={() => alert("Hang Up")}
+        onClick={() => this.props.hangup()}
       >
         Hang Up
       </Button>
@@ -163,5 +167,6 @@ export default class VideoComponent extends Component {
 }
 
 VideoComponent.defaultProps = {
-  callAnswered: () => {}
+  callAnswered: () => {},
+  hangup: () => {}
 };
