@@ -22,7 +22,7 @@
 #switch-camera {
   z-index: 100;
   position: absolute;
-  bottom: 3vh;
+  bottom: 2vh;
   right: 7vw;
 }
 
