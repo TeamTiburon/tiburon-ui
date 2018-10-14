@@ -73,6 +73,10 @@ class IncomingCall extends Component {
         this.sendMessageToUser = this.sendMessageToUser.bind(this);
         this.answer = this.answer.bind(this);
         this.hangup = this.hangup.bind(this);
+
+        this.startPersistentVibrate = this.startPersistentVibrate.bind(this);
+        this.startVibrate = this.startVibrate.bind(this);
+        this.stopVibrate = this.stopVibrate.bind(this);
     }
 
     componentDidMount() {
@@ -93,6 +97,34 @@ class IncomingCall extends Component {
                 identity: data.identity
             });
         });
+
+        this.startPersistentVibrate(200, 300);
+    }
+
+    componentWillUnmount() {
+        this.stopVibrate();
+    }
+
+    startVibrate(duration) {
+        navigator.vibrate(duration);
+    }
+
+    // Stops vibration
+    stopVibrate() {
+        // Clear interval and stop persistent vibrating
+        if(this.vibrateInterval) {
+            clearInterval(this.vibrateInterval);
+            this.vibrateInterval = null;
+        }
+        navigator.vibrate(0);
+    }
+
+    // Start persistent vibration at given duration and interval
+    // Assumes a number value is given
+    startPersistentVibrate(duration, interval) {
+        this.vibrateInterval = setInterval(() => {
+            this.startVibrate(duration);
+        }, interval);
     }
 
     sendMessageToUser(event) {
@@ -101,6 +133,7 @@ class IncomingCall extends Component {
     }
 
     answer(event) {
+        this.stopVibrate();
         this.setState({ answered: true });
     }
 
