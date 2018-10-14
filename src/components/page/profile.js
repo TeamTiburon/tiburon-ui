@@ -88,8 +88,6 @@ class Profile extends Component {
         const volunteerId = this.props.match.params.id;
         const volunteer = volunteers.find(volunteer => volunteerId == volunteer.volunteer_id);
 
-        this.checkOnlineStatus(volunteer);
-
         this.state = {
             calling: false,
             volunteerId,
@@ -103,8 +101,6 @@ class Profile extends Component {
     }
 
     checkOnlineStatus(volunteer) {
-        const onlineUsers = [];
-
         fetch(`https://backend.doc.money/online`, {
             method: 'GET'
         }).then((response) => response.json())
@@ -174,8 +170,8 @@ class Profile extends Component {
 
     }
 
-    onComponentDidMount() {
-
+    componentDidMount() {
+        this.checkOnlineStatus(this.state.volunteer);
     }
 
     handleNavigation(event) {
