@@ -46,7 +46,7 @@ class Splash extends Component {
 
     render() {
 
-        const { classes, theme } = this.props;
+        const { classes, theme, t } = this.props;
 
         return (
             <div className={classes.root}>
@@ -58,11 +58,11 @@ class Splash extends Component {
                         </Flip>
                     </Grid>
 
-                        <p style={{margin: 'auto'}}><em>Connect with help while maintaining your privacy</em></p>
+                        <p style={{margin: 'auto'}}><em>{t('connect')}</em></p>
 
                     <Grid item xs={12} className={classes.gridy}>
                         <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                            Get Started
+                            {t('get_started')}
                         </Button>
                     </Grid>
                 </Grid>

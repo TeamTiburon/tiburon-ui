@@ -184,7 +184,7 @@ class Profile extends Component {
 
     render() {
         const { volunteer } = this.state;
-        const { classes } = this.props;
+        const { classes, t } = this.props;
 
         var stars = [];
         var emptyStars = [];
@@ -225,26 +225,26 @@ class Profile extends Component {
                     </div>
 
                     <div className={classes.volunteerDetails}>
-                        <h3>Languages</h3>
+                        <h3>{t('languages')}</h3>
 
                         <ul>
                             {volunteer.languages.map((language, i) => <li key={i}>{language}</li>)}
                         </ul>
 
-                        <h3>Knowledge Areas</h3>
+                        <h3>{t('knowledge_areas')}</h3>
 
                         <ul>
                             {volunteer.knowledge.map((knowledge, i) => <li key={i}>{knowledge}</li>)}
                         </ul>
 
-                        <h3>Bio</h3>
+                        <h3>{t('bio')}</h3>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
 
                     <BottomNavigation onChange={this.handleNavigation} className={classes.actions}>
-                        <BottomNavigationAction onClick={this.initiateLiveVideoChat} label="Video Call" value="video-call" icon={<Videocam />} />
-                        <BottomNavigationAction onClick={this.intiateLiveTextChat} label="Live Chat" value="live-chat" icon={<Chat />} />
+                        <BottomNavigationAction onClick={this.initiateLiveVideoChat} label={t('video_call')} value="video-call" icon={<Videocam />} />
+                        <BottomNavigationAction onClick={this.intiateLiveTextChat} label={t('live_chat')} value="live-chat" icon={<Chat />} />
                     </BottomNavigation>
                 </div>
             </div>

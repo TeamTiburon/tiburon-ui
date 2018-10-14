@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import queryString from 'query-string';
 import VideoComponent from '../video/VideoComponent';
 
+import { withNamespaces, Trans } from "react-i18next";
+
 const styles = theme => ({
     root: {
         padding: 24
@@ -118,7 +120,8 @@ class IncomingCall extends Component {
                 label: 'Español',
             }
         ];
-        const { classes } = this.props;
+        const { classes, t } = this.props;
+        const { userName } = this.state;
 
         if (!this.state.answered) {
             return (<div className={classes.loadingSpinner}>
@@ -126,7 +129,9 @@ class IncomingCall extends Component {
                 <Phone style={{ fontSize: 310, zIndex: 9, color: "#fff", display: 'block' }} color="primary"></Phone>
 
                 <h4 style={{ color: "#fff" }}>
-                    {this.state.userName} is calling
+                <Trans i18nKey='user_is_calling' userName={userName}>
+                        {{userName}} is calling
+                    </Trans>
                     </h4>
                 <div>
                         <Button
@@ -135,7 +140,7 @@ class IncomingCall extends Component {
                             onClick={this.answer}
                             disabled={!this.state.token}
                             className={classes.button}>
-                            Answer
+                            {t('answer')}
                                     </Button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <Button
@@ -143,7 +148,7 @@ class IncomingCall extends Component {
                             color="primary"
                             onClick={this.sendMessageToUser}
                             className={classes.button}>
-                            Send Message
+                            {t('send_message')}
                                     </Button>
                 </div>
             </div>);
@@ -159,6 +164,6 @@ class IncomingCall extends Component {
         }
     }
 }
-export default withStyles(styles)(withRouter(IncomingCall));
+export default withNamespaces()(withStyles(styles)(withRouter(IncomingCall)));
 
 //export default withStyles(styles)(withRouter(Search));

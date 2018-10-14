@@ -68,12 +68,12 @@ class Register extends Component {
                 label: 'Español',
             }
         ];
-        const { classes } = this.props;
+        const { classes, t } = this.props;
 
         return (
 
             <div>
-                <h1 className={classes.header}>Sign Up</h1>
+                <h1 className={classes.header}>{t('sign_up')}</h1>
 
                 <form noValidate autoComplete="off">
 
@@ -82,7 +82,7 @@ class Register extends Component {
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="email"
-                                    label="Email"
+                                    label={t('email')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="email"
@@ -92,7 +92,7 @@ class Register extends Component {
                             <Grid item xs={12} className={classes.gridy}>
                                 <TextField
                                     id="display-name"
-                                    label="Display Name"
+                                    label={t('display_name')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="displayName"
@@ -103,7 +103,7 @@ class Register extends Component {
                                 <TextField
                                     id="standard-select-language"
                                     select
-                                    label="Select"
+                                    label={t('select')}
                                     className={classes.textField}
                                     value={this.state.language}
                                     onChange={this.handleChange}
@@ -112,7 +112,7 @@ class Register extends Component {
                                             className: classes.menu,
                                         },
                                     }}
-                                    helperText="Please select your preferred language"
+                                    helperText={t('select_language')}
                                     margin="normal"
                                     className={classes.flexy}
                                     name="language"
@@ -127,7 +127,7 @@ class Register extends Component {
                             </Grid>
                             <Grid item xs={12} className={classes.gridy}>
                                 <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                                    Submit
+                                    {t('submit')}
                                 </Button>
                             </Grid>
                         </Grid>

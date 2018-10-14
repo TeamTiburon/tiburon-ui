@@ -82,16 +82,16 @@ class Search extends Component {
     }
 
     render() {
-        const { classes, theme } = this.props;
+        const { classes, theme, t } = this.props;
 
         return (
             <div className={classes.root}>
-                <h1 className={classes.header}>Live Assistance</h1>
+                <h1 className={classes.header}>{t('live_assist')}</h1>
 
                 <Grid container spacing={24}>
                     <Grid item xs={12} className={classes.gridy}>
                         <FormControl className={classes.flexy}>
-                            <InputLabel htmlFor="helpWith">I need help with...</InputLabel>
+                            <InputLabel htmlFor="helpWith">{t('need_help')}</InputLabel>
                             <Select
                                 multiple
                                 value={this.state.helpWith}
@@ -110,7 +110,7 @@ class Search extends Component {
 
                     <Grid item xs={12} className={classes.gridy}>
                         <FormControl className={classes.flexy}>
-                            <InputLabel htmlFor="language">In the language...</InputLabel>
+                            <InputLabel htmlFor="language">{t('in_language')}</InputLabel>
                             <Select
                                 value={this.state.language}
                                 onChange={this.handleChange}
@@ -128,7 +128,7 @@ class Search extends Component {
 
                     <Grid item xs={12} className={classes.gridy}>
                         <Button variant="contained" color="primary" onClick={this.submit} className={classes.button}>
-                            Find Help
+                            {t('find_help')}
                         </Button>
                     </Grid>
                 </Grid>

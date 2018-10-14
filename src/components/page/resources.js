@@ -74,7 +74,7 @@ class LocalInformation extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, t } = this.props;
         const vm = this;
 
         const sortedResources = resources.sort((a, b) => {
@@ -87,7 +87,7 @@ class LocalInformation extends Component {
                     <IconButton onClick={this.goBack}>
                         <ArrowBack className={classes.icon}/>
                     </IconButton>
-                    <h1 className={classes.title}>Resources near you:</h1>
+                    <h1 className={classes.title}>{t('resources')}:</h1>
                 </div>
 
                 <div className={classes.cardContainer}>

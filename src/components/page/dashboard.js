@@ -102,7 +102,7 @@ class Dashboard extends Component {
                                  color="primary"
                                  onClick={this.getLiveAssistance}
                                  className={classes.button}>
-                                    Live Assistance
+                                    {t('live_assistance')}
                                 </Button>
                             </Grid>
                             <Grid item xs={12} className={classes.gridy}>
@@ -111,7 +111,7 @@ class Dashboard extends Component {
                                  color="primary"
                                  onClick={this.getLocalInformation}
                                  className={classes.button}>
-                                    Local Information
+                                    {t('local_information')}
                                 </Button>
                             </Grid>
                         </Grid>
