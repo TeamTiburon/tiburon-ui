@@ -23,7 +23,7 @@ class App extends Component {
       <BrowserRouter>
 
         <div>
-           <Navbar/>
+           <Navbar props={this.props}/>
             <Switch>
               <Route exact path='/' render={(props) => <Splash {...props} />}/>
               <Route path='/register' render={(props) => <Register {...props} />}/>
