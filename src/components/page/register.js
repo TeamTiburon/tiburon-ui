@@ -37,7 +37,6 @@ class Register extends Component {
         super(props);
         this.state = {
             email: '',
-            phone: '',
             displayName: '',
             language: ''
         }
@@ -87,17 +86,6 @@ class Register extends Component {
                                     margin="normal"
                                     className={classes.flexy}
                                     name="email"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-
-                            <Grid item xs={12} className={classes.gridy}>
-                                <TextField
-                                    id="phone"
-                                    label="Phone"
-                                    margin="normal"
-                                    className={classes.flexy}
-                                    name="phone"
                                     onChange={this.handleChange}
                                 />
                             </Grid>
