@@ -28,17 +28,12 @@ export const connection = (function() {
                 }
             });
         }
-
-        // Example of changing route with singleton
-        // if(history) {
-        //    history.push('/register');
-        // }
     };
 
     // Subscribe and ingest React's router history so we can force view changes
-    function subscribe(routerHistory) {
+    function subscribe(routerHistory, volunteer) {
         history = routerHistory;
-        subscription = client.subscribe('/volunteer/6', handler);
+        subscription = client.subscribe('/volunteer/' + volunteer.volunteer_id, handler);
     }
 
     return {

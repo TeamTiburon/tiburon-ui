@@ -43,8 +43,6 @@ class Register extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
-
-
     }
 
     onComponentDidMount() {

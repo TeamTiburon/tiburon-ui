@@ -72,13 +72,15 @@ class IncomingCall extends Component {
     }
 
     componentDidMount() {
+        const volunteer = JSON.parse(localStorage.getItem('volunteer'));
+
         fetch(`http://35.184.88.156:8080/token`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: '6'
+                user: volunteer.volunteer_id + ''
             })
         }).then((response) => response.json())
         .then((data) => {
