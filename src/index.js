@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Nes from 'nes/client';
 
-export const client = new Nes.Client('ws://35.184.88.156:8080');
+export const client = new Nes.Client('wss://backend.doc.money');
 
 client.connect().then(() => {
     ReactDOM.render(<App />, document.getElementById('root'));
