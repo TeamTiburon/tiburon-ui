@@ -11,7 +11,7 @@ client.connect().then(() => {
     ReactDOM.render(<App />, document.getElementById('root'));
 });
 
-serviceWorker.register();
+serviceWorker.unregister();
 
 export const connection = (function() {
     let subscription;
