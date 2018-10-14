@@ -14,6 +14,7 @@ import SendMessage from './components/page/send-message';
 import OutgoingCall from './components/page/outgoing-call';
 import VolunteerDashboard from './components/page/volunteer-dashboard';
 import VolunteerLogin from './components/page/volunteer-login';
+import LocalInformation from './components/page/resources';
 
 class App extends Component {
   render() {
@@ -36,6 +37,7 @@ class App extends Component {
               <Route path='/profile/:id' render={(props) => <Profile {...props} />}/>
               <Route path='/volunteerDashboard' component={ VolunteerDashboard }/>
               <Route path='/volunteerLogin' component={ VolunteerLogin }/>
+              <Route path='/localInformation' component={ LocalInformation }/>
             </Switch>
         </div>
       </BrowserRouter>

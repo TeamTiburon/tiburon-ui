@@ -47,7 +47,7 @@ class Dashboard extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
-        this.getLocalInformation = this.submit.bind(this);
+        this.getLocalInformation = this.getLocalInformation.bind(this);
         this.getLiveAssistance = this.getLiveAssistance.bind(this);
     }
 
@@ -71,7 +71,7 @@ class Dashboard extends Component {
     }
 
     getLocalInformation(event) {
-
+        this.props.history.push('/localInformation')
     }
 
     submit(event) {
