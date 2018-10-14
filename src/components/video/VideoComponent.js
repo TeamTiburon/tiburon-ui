@@ -8,6 +8,19 @@ import Phone from '@material-ui/icons/Phone';
 import './VideoComponent.css';
 
 const styles = theme => ({
+    windowSizer: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+
+        zIndex: -1,
+        height: '100vh',
+        width: '100vw',
+        background: 'transparent'
+
+    },
     loadingSpinner: {
         position: "absolute",
         top: 0,
@@ -49,6 +62,7 @@ class VideoComponent extends Component {
 
     this.localMedia = React.createRef();
     this.remoteMedia = React.createRef();
+    this.windowSizer = React.createRef();
   }
 
   componentDidMount() {
@@ -79,8 +93,9 @@ class VideoComponent extends Component {
     console.log("Joining room '" + this.props.roomName + "'...");
     let connectOptions = {
       name: this.props.roomName,
+      audio: true,
       video: {
-          aspectRatio: window.innerWidth / window.innerHeight
+          aspectRatio: this.windowSizer.current.clientWidth / this.windowSizer.current.clientHeight
       }
     };
 
@@ -211,6 +226,7 @@ class VideoComponent extends Component {
 
     return (
         <div className="flex-container">
+            <div className={ classes.windowSizer } ref={this.windowSizer }/>
             {toggleMute}
             <div className="flex-item">
                 <Button
