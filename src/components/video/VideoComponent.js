@@ -53,7 +53,9 @@ class VideoComponent extends Component {
       activeRoom: "", // Track the current active room
       muteVideo: props.muteVideo,
       answered: false,
-      sizes: [0,0]
+      sizes: [0,0],
+      devices: [],
+      currentDevice: 0
     };
     this.joinRoom = this.joinRoom.bind(this);
     this.roomJoined = this.roomJoined.bind(this);
@@ -62,6 +64,8 @@ class VideoComponent extends Component {
     this.detachTracks = this.detachTracks.bind(this);
     this.detachParticipantTracks = this.detachParticipantTracks.bind(this);
     this.enableVideo = this.enableVideo.bind(this);
+    this.listDevices = this.listDevices.bind(this);
+    this.switchCamera = this.switchCamera.bind(this);
 
     this.localMedia = React.createRef();
     this.remoteMedia = React.createRef();
@@ -70,12 +74,58 @@ class VideoComponent extends Component {
 
   componentDidMount() {
     this.joinRoom();
+    navigator.mediaDevices.enumerateDevices().then(this.listDevices);
   }
 
   componentWillUnmount() {
     if (this.state.activeRoom) {
+      const { localParticipant } = this.state.activeRoom;
+      this.detachParticipantTracks(localParticipant);
         this.state.activeRoom.disconnect();
     }
+  }
+
+  listDevices(mediaDevices) {
+    const devices = mediaDevices.reduce((acc, mediaDevice) => {
+      if (mediaDevice.kind === 'videoinput') {
+        acc.push({
+          deviceId: mediaDevice.deviceId,
+          label: mediaDevice.label || 'Camera'
+        });
+      }
+
+      return acc;
+    }, []);
+
+    console.log(devices);
+
+    this.setState({devices});
+  }
+
+  switchCamera() {
+    const { currentDevice, devices, activeRoom } = this.state;
+
+    let nextDevice = currentDevice + 1;
+    if (nextDevice > devices.length - 1) {
+      nextDevice = 0;
+    }
+
+    const { localParticipant } = activeRoom;
+
+    Video.createLocalVideoTrack({
+      deviceId: { exact: devices[nextDevice].deviceId },
+      aspectRatio: 1 / (this.windowSizer.current.clientWidth / this.windowSizer.current.clientHeight)
+    }).then((localVideoTrack) => {
+      const tracks = Array.from(localParticipant.videoTracks.values());
+      localParticipant.unpublishTracks(tracks);
+      this.detachTracks(tracks);
+
+      localParticipant.publishTrack(localVideoTrack);
+      var previewContainer = this.localMedia.current;
+      this.attachTracks([localVideoTrack], previewContainer);
+    });
+
+    this.setState({currentDevice: nextDevice});
   }
 
   enableVideo() {
@@ -231,10 +281,15 @@ class VideoComponent extends Component {
         <Button id="unmute-video" variant="raised" onClick={this.enableVideo}>{t('enable_video')}</Button>
     ) : showLocalTrack;
 
+    const switchCameraButton = this.state.devices.length > 0 && this.state.answered ?
+        ( <Button id="switch-camera" variant="raised" onClick={this.switchCamera}>{t('switch_camera')}</Button> )
+        : null;
+
     return (
           <div className="flex-container">
             <div className={ classes.windowSizer } ref={this.windowSizer }/>
             {toggleMute}
+            {switchCameraButton}
             <div className="flex-item">
                 <Button
                     label={t('hang_up')}
