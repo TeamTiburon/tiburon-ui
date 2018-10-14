@@ -145,8 +145,8 @@ class VideoComponent extends Component {
         }
     }
 
-    if (room.participants.length) {
-        this.setState({ answered: true })
+    if (room.participants && room.participants.size) {
+        this.setState({ answered: true });
     }
 
     // Attach the Tracks of the room's participants.
